@@ -1,0 +1,53 @@
+body {
+  background-color: #1d2129;
+  color: #7442c8;
+}
+
+.app {
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+}
+
+.timer {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer-value {
+  font-size: 100px;
+  font-weight: bold;
+}
+
+.timer-unit {
+  font-size: 20px;
+}
+
+.buttons {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start {
+  background-color: #7442c8;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.pause {
+  background-color: #ccc;
+  color: #7442c8;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
