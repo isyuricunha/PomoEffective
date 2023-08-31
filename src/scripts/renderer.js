@@ -41,3 +41,28 @@ pauseButton.addEventListener("click", () => {
 });
 
 updateTimerDisplay();
+
+// add music
+
+const backgroundMusic = new Audio('../music/periodic-time.mp3');
+let isMusicPlaying = true;
+
+backgroundMusic.loop = true; // Repetição contínua da música
+
+function toggleBackgroundMusic() {
+  if (isMusicPlaying) {
+    backgroundMusic.pause();
+    isMusicPlaying = false;
+  } else {
+    backgroundMusic.play();
+    isMusicPlaying = true;
+  }
+}
+
+// Adicione um botão à interface para controlar a música
+const toggleMusicButton = document.createElement('button');
+toggleMusicButton.textContent = 'Toggle Music';
+toggleMusicButton.classList.add('toggle-music');
+toggleMusicButton.addEventListener('click', toggleBackgroundMusic);
+
+document.querySelector('.buttons').appendChild(toggleMusicButton);

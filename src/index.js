@@ -36,7 +36,7 @@ function createWindow() {
   const menu = Menu.buildFromTemplate(menuTemplate);
   Menu.setApplicationMenu(menu);
 
-  mainWindow.loadFile("index.html");
+  mainWindow.loadFile("./src/index.html");
 
   mainWindow.on("closed", () => {
     mainWindow = null;
