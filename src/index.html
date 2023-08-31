@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Hello World!</title>
-    <link rel="stylesheet" href="theme.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/purple-rain-dark.css" />
+    <title>PomoEffective</title>
   </head>
-  <body class="theme-purple-rain-dark">
-    <h1>💖 Hello World!</h1>
-    <p>Welcome to your Electron application.</p>
+  <body>
+    <div class="app">
+      <div class="timer">
+        <div class="timer-value">25</div>
+        <div class="timer-unit">minutes</div>
+      </div>
+      <div class="buttons">
+        <button class="start">Start</button>
+        <button class="pause">Pause</button>
+        <script src="./scripts/renderer.js"></script>
+      </div>
+    </div>
   </body>
 </html>
