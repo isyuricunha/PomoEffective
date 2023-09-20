@@ -1,0 +1,228 @@
+:root {
+  --background: white;
+  --alpha: rgba(255, 255, 255, 0.9);
+  --nav: rgba(0, 0, 0, 0.3);
+  --main: #28292b;
+  --accent: #32b67a;
+  --additional: #f4f4f4;
+}
+
+:root[data-dark-mode="true"] {
+  --background: #28292b;
+  --alpha: rgba(40, 41, 43, 0.9);
+  --nav: rgba(255, 255, 255, 0.3);
+  --main: #f4f4f4;
+  --accent: #32b67a;
+  --additional: #393a3c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--main);
+  font-size: 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  letter-spacing: 0.01rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  height: 100%;
+  text-align: center;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding: 50px 25px;
+  text-align: center;
+}
+
+h1 {
+  flex-basis: 100%;
+  margin: 0;
+  padding: 0;
+  color: var(--main);
+  font-size: 1rem;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  list-style: none;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0 0.75rem;
+  line-height: 1rem;
+  white-space: nowrap;
+}
+
+li :first-child {
+  font-size: 0.85rem;
+  white-space: normal;
+}
+
+li h5 {
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+li div {
+  width: 100%;
+}
+
+li input,
+li button {
+  width: 100px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+ul,
+footer {
+  margin-top: 1.5rem;
+}
+
+ul ul {
+  margin-top: 0.75rem;
+}
+
+input {
+  border: 1px solid var(--additional);
+  border-radius: 2px;
+  outline: 0;
+  margin: 0;
+  padding: 0 10px;
+  height: 40px;
+  background-color: transparent;
+  color: var(--main);
+  font-size: 1rem;
+  text-align: center;
+  transition: border 100ms, background 100ms;
+}
+
+input:focus {
+  border-color: var(--accent);
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  font-size: 4.5rem;
+  font-weight: 200;
+  line-height: 4.5rem;
+}
+
+.timer input {
+  border-color: transparent;
+  padding-left: 20px;
+  padding-right: 0;
+  width: 120px;
+  height: 4.5rem;
+  font-size: 4.5rem;
+  font-weight: 200;
+  line-height: 4.5rem;
+}
+
+.timer input:focus {
+  border-color: var(--accent);
+}
+
+.timer input ~ small {
+  font-size: 3rem;
+}
+
+.timer input ~ input {
+  width: 100px;
+  font-size: 3.5rem;
+}
+
+button {
+  outline: 0;
+  border: 0;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0 15px;
+  height: 40px;
+  background-color: var(--additional);
+  color: var(--main);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+button:focus {
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+button + button {
+  margin-left: 15px;
+}
+
+button[type="submit"] {
+  background-color: var(--accent);
+  color: var(--additional);
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  background-image: linear-gradient(to bottom, var(--alpha), var(--alpha) 80%, transparent);
+  line-height: 1rem;
+  -webkit-app-region: drag;
+}
+
+nav button {
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  font-size: 0.9rem;
+  line-height: 1rem;
+  letter-spacing: 0;
+  text-transform: capitalize;
+  margin-left: 0.3rem;
+}
+
+nav button[aria-selected="false"] {
+  color: var(--nav);
+}

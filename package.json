@@ -1,0 +1,139 @@
+{
+  "name": "thomas",
+  "productName": "Thomas",
+  "version": "0.6.1",
+  "description": "Simple pomodoro timer",
+  "electronVersion": "0.36.0",
+  "main": "app/index.js",
+  "files": [
+    "build",
+    "app",
+    "lib",
+    "modules"
+  ],
+  "scripts": {
+    "start": "electron .",
+    "lint": "standard",
+    "format": "prettier --write '**/*.js' && standard --fix",
+    "pack": "electron-builder --dir",
+    "dist": "npm run dist:mac && npm run dist:linux && npm run dist:win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux",
+    "dist:win": "electron-builder --win",
+    "postinstall": "electron-builder install-app-deps",
+    "postversion": "git push --follow-tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrepolischuk/thomas.git"
+  },
+  "config": {
+    "forge": {
+      "publishers": [
+        {
+          "name": "@electron-forge/publisher-github",
+          "config": {
+            "repository": {
+              "owner": "isyuricunha",
+              "name": "thomas"
+            },
+            "draft": true
+          }
+        }
+      ]
+    }
+  },
+  "keywords": [
+    "electron-app",
+    "electron",
+    "pomodoro",
+    "timer"
+  ],
+  "author": "Andrey Polischuk <me@andrepolischuk.com> (https://andrepolischuk.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrepolischuk/thomas/issues"
+  },
+  "homepage": "https://github.com/andrepolischuk/thomas",
+  "dependencies": {
+    "bel": "^5.0.0",
+    "dact": "^0.3.2",
+    "dact-electron": "^0.1.0",
+    "electron-debug": "^1.0.1",
+    "electron-localshortcut": "^1.1.1",
+    "electron-settings": "^3.1.4",
+    "nanomorph": "^5.0.0"
+  },
+  "devDependencies": {
+    "@electron-forge/publisher-github": "^6.4.1",
+    "electron": "^4.0.3",
+    "electron-builder": "^20.38.5",
+    "electron-updater": "^4.0.6",
+    "husky": "^1.1.1",
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.14.3",
+    "standard": "^10.0.3"
+  },
+  "build": {
+    "appId": "com.andrepolischuk.thomas",
+    "publish": "always",
+    "files": [
+      "**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "darkModeSupport": true
+    },
+    "dmg": {
+      "iconSize": 160,
+      "contents": [
+        {
+          "x": 180,
+          "y": 170
+        },
+        {
+          "x": 480,
+          "y": 170,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "category": "Utility",
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "jsxBracketSameLine": true
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "standard --fix",
+      "git add"
+    ],
+    "!node_modules/electron/**": []
+  },
+  
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
