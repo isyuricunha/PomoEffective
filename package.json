@@ -74,9 +74,12 @@
     "prettier": "^1.14.3",
     "standard": "^10.0.3"
   },
-  "build": {
-    "appId": "com.andrepolischuk.thomas",
-    "publish": "always",
+  "appId": "com.andrepolischuk.thomas",
+  "publish": {
+    "provider": "github",
+    "owner": "isyuricunha",
+    "repo": "thomas",
+    "token": "${GH_TOKEN}",
     "files": [
       "**/*"
     ],
@@ -130,7 +133,6 @@
     ],
     "!node_modules/electron/**": []
   },
-  
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
