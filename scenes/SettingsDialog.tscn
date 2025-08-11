@@ -1,0 +1,157 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqxvhqxqxqxqx"]
+
+[ext_resource type="Script" path="res://scripts/SettingsDialog.gd" id="1_0x0x0"]
+
+[node name="SettingsDialog" type="WindowDialog"]
+popup_exclusive = true
+title = "Settings"
+size = Vector2i(400, 500)
+script = ExtResource("1_0x0x0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "YuPomo Settings"
+label_settings = SubResource("LabelSettings_1")
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="TimerSettings" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TimerLabel" type="Label" parent="VBoxContainer/TimerSettings"]
+layout_mode = 2
+text = "Timer Durations"
+label_settings = SubResource("LabelSettings_2")
+
+[node name="FocusDuration" type="HBoxContainer" parent="VBoxContainer/TimerSettings"]
+layout_mode = 2
+
+[node name="FocusLabel" type="Label" parent="VBoxContainer/TimerSettings/FocusDuration"]
+layout_mode = 2
+text = "Focus Time (minutes):"
+label_settings = SubResource("LabelSettings_3")
+
+[node name="FocusSpinBox" type="SpinBox" parent="VBoxContainer/TimerSettings/FocusDuration"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 120.0
+value = 25.0
+step = 1.0
+
+[node name="ShortBreakDuration" type="HBoxContainer" parent="VBoxContainer/TimerSettings"]
+layout_mode = 2
+
+[node name="ShortBreakLabel" type="Label" parent="VBoxContainer/TimerSettings/ShortBreakDuration"]
+layout_mode = 2
+text = "Short Break (minutes):"
+label_settings = SubResource("LabelSettings_3")
+
+[node name="ShortBreakSpinBox" type="SpinBox" parent="VBoxContainer/TimerSettings/ShortBreakDuration"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 30.0
+value = 5.0
+step = 1.0
+
+[node name="LongBreakDuration" type="HBoxContainer" parent="VBoxContainer/TimerSettings"]
+layout_mode = 2
+
+[node name="LongBreakLabel" type="Label" parent="VBoxContainer/TimerSettings/LongBreakDuration"]
+layout_mode = 2
+text = "Long Break (minutes):"
+label_settings = SubResource("LabelSettings_3")
+
+[node name="LongBreakSpinBox" type="SpinBox" parent="VBoxContainer/TimerSettings/LongBreakDuration"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 60.0
+value = 15.0
+step = 1.0
+
+[node name="Spacer2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="SoundSettings" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SoundLabel" type="Label" parent="VBoxContainer/SoundSettings"]
+layout_mode = 2
+text = "Sound & Notifications"
+label_settings = SubResource("LabelSettings_2")
+
+[node name="SoundToggle" type="CheckBox" parent="VBoxContainer/SoundSettings"]
+layout_mode = 2
+text = "Enable sound notifications"
+label_settings = SubResource("LabelSettings_3")
+
+[node name="SystemNotification" type="CheckBox" parent="VBoxContainer/SoundSettings"]
+layout_mode = 2
+text = "Show system notifications"
+label_settings = SubResource("LabelSettings_3")
+
+[node name="Spacer3" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 20)
+
+[node name="ThemeSettings" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ThemeLabel" type="Label" parent="VBoxContainer/ThemeSettings"]
+layout_mode = 2
+text = "Theme"
+label_settings = SubResource("LabelSettings_2")
+
+[node name="ThemeOption" type="OptionButton" parent="VBoxContainer/ThemeSettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer4" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ResetButton" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Reset to Defaults"
+custom_minimum_size = Vector2(120, 40)
+
+[node name="CancelButton" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Cancel"
+custom_minimum_size = Vector2(80, 40)
+
+[node name="SaveButton" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Save"
+custom_minimum_size = Vector2(80, 40)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1"]
+font_size = 24
+font_color = Color(1, 0.647059, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2"]
+font_size = 18
+font_color = Color(1, 0.647059, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3"]
+font_size = 14
+font_color = Color(0.8, 0.8, 0.8, 1)

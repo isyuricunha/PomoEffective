@@ -1,0 +1,17 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1754955780
+build.gd::GDScript/GDScript::6976606368368785254::1754955360::0::1::::<>EditorScript<><>0<>0<><>::
+PROJECT_OVERVIEW.md::TextFile/TextFile::-1::1754955360::0::1::::<><><>0<>0<><>::
+README.md::TextFile/TextFile::-1::1754955360::0::1::::<><><>0<>0<><>::
+::res://assets/::1754955741
+icon.png::CompressedTexture2D/CompressedTexture2D::6113804627333525858::1754955360::1754955741::0::::<><><>0<>0<>6ab8bab4e683cb0185eacd354fd0d51e<>::
+::res://assets/sounds/::1754955741
+notification.ogg::AudioStreamOggVorbis/AudioStreamOggVorbis::6920176326017904118::1754955360::1754955741::0::::<><><>0<>0<>e03734b7a303d52e25c38bc9a34a38d1<>::
+::res://scenes/::1754955073
+Main.tscn::PackedScene/PackedScene::3558211304312886467::1754955360::0::1::::<><><>0<>0<><>::res://scripts/Main.gd<>res://themes/DarkOrangeTheme.tres
+SettingsDialog.tscn::PackedScene/PackedScene::3558211304312886467::1754955360::0::1::::<><><>0<>0<><>::res://scripts/SettingsDialog.gd
+::res://scripts/::1754955740
+Main.gd::GDScript/GDScript::2115827625692267393::1754955370::0::1::::<>Control<><>0<>0<><>::
+SettingsDialog.gd::GDScript/GDScript::5992768111135488049::1754955360::0::1::::<>WindowDialog<><>0<>0<><>::
+::res://themes/::1754955035
+DarkOrangeTheme.tres::Theme/Theme::3558211304312886467::1754955360::0::1::::<><><>0<>0<><>::
