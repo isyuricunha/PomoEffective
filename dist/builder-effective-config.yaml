@@ -1,4 +1,36 @@
 directories:
   output: dist
   buildResources: build
-electronVersion: 4.2.12
+appId: com.pomoeffective.app
+productName: PomoEffective
+files:
+  - filter:
+      - src/**/*
+      - lib/**/*
+      - modules/**/*
+      - node_modules/**/*
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - x64
+mac:
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+  category: public.app-category.productivity
+linux:
+  target:
+    - target: AppImage
+      arch:
+        - x64
+    - target: deb
+      arch:
+        - x64
+  category: Utility
+electronVersion: 8.5.5

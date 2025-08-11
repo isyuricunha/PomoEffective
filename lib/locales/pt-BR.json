@@ -1,0 +1,57 @@
+{
+    "common": {
+        "start": "Iniciar",
+        "pause": "Pausar",
+        "stop": "Parar",
+        "reset": "Reiniciar",
+        "settings": "Configurações",
+        "log": "Registro",
+        "timer": "Temporizador",
+        "break": "Pausa",
+        "interval": "Intervalo",
+        "finish": "Finalizar",
+        "cancel": "Cancelar",
+        "save": "Salvar",
+        "close": "Fechar",
+        "language": "Idioma",
+        "clear": "Limpar",
+        "minutes": "minutos"
+    },
+    "timer": {
+        "pomodoro": "Pomodoro",
+        "shortBreak": "Pausa Curta",
+        "longBreak": "Pausa Longa",
+        "timeRemaining": "Tempo Restante",
+        "sessionComplete": "Sessão Concluída!",
+        "breakTime": "Hora da Pausa!",
+        "backToWork": "Voltar ao Trabalho"
+    },
+    "settings": {
+        "pomodoroDuration": "Duração do Pomodoro (minutos)",
+        "shortBreakDuration": "Duração da Pausa Curta (minutos)",
+        "longBreakDuration": "Duração da Pausa Longa (minutos)",
+        "longBreakInterval": "Intervalo da Pausa Longa",
+        "autoStartBreaks": "Iniciar Pausas Automaticamente",
+        "autoStartPomodoros": "Iniciar Pomodoros Automaticamente",
+        "soundNotifications": "Notificações Sonoras",
+        "systemNotifications": "Notificações do Sistema",
+        "darkMode": "Modo Escuro",
+        "language": "Idioma"
+    },
+    "navigation": {
+        "timer": "Temporizador",
+        "log": "Registro de Atividades",
+        "settings": "Configurações"
+    },
+    "log": {
+        "noIntervals": "Você ainda não tem intervalos completados"
+    },
+    "languages": {
+        "en": "English",
+        "pt-BR": "Português Brasileiro",
+        "ja": "日本語",
+        "es": "Español",
+        "fr": "Français",
+        "de": "Deutsch"
+    }
+}

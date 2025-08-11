@@ -1,31 +1,43 @@
 {
   "name": "pomoeffective",
-  "productName": "pomoeffective",
-  "version": "1.0.0",
-  "description": "My Electron application description",
+  "productName": "PomoEffective",
+  "version": "2.0.0",
+  "description": "A modern, effective Pomodoro timer with internationalization support",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "eslint src --color"
+    "lint": "eslint src --color",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "build:all": "electron-builder -mwl"
   },
-  "keywords": [],
+  "keywords": [
+    "pomodoro",
+    "timer",
+    "productivity",
+    "electron"
+  ],
   "author": "isyuricunha",
   "license": "MIT",
   "config": {
     "forge": {
       "make_targets": {
         "win32": [
-          "squirrel"
+          "squirrel",
+          "nsis"
         ],
         "darwin": [
-          "zip"
+          "zip",
+          "dmg"
         ],
         "linux": [
           "deb",
-          "rpm"
+          "rpm",
+          "AppImage"
         ]
       },
       "electronPackagerConfig": {
@@ -46,20 +58,83 @@
       }
     }
   },
+  "build": {
+    "appId": "com.pomoeffective.app",
+    "productName": "PomoEffective",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "lib/**/*",
+      "modules/**/*",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "category": "public.app-category.productivity"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Utility"
+    }
+  },
   "dependencies": {
     "electron-compile": "^6.4.4",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.1",
+    "i18next": "^23.7.16",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "i18next-http-backend": "^2.4.2"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "electron": "^8.2.0",
+    "electron-builder": "^22.14.13",
     "electron-forge": "^5.2.4",
     "electron-prebuilt-compile": "8.2.0",
-    "eslint": "^3",
-    "eslint-config-airbnb": "^15",
-    "eslint-plugin-import": "^2",
-    "eslint-plugin-jsx-a11y": "^5",
-    "eslint-plugin-react": "^7"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5"
   }
 }

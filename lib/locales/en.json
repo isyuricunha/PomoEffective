@@ -1,0 +1,57 @@
+{
+    "common": {
+        "start": "Start",
+        "pause": "Pause",
+        "stop": "Stop",
+        "reset": "Reset",
+        "settings": "Settings",
+        "log": "Log",
+        "timer": "Timer",
+        "break": "Break",
+        "interval": "Interval",
+        "finish": "Finish",
+        "cancel": "Cancel",
+        "save": "Save",
+        "close": "Close",
+        "language": "Language",
+        "clear": "Clear",
+        "minutes": "minutes"
+    },
+    "timer": {
+        "pomodoro": "Pomodoro",
+        "shortBreak": "Short Break",
+        "longBreak": "Long Break",
+        "timeRemaining": "Time Remaining",
+        "sessionComplete": "Session Complete!",
+        "breakTime": "Break Time!",
+        "backToWork": "Back to Work"
+    },
+    "settings": {
+        "pomodoroDuration": "Pomodoro Duration (minutes)",
+        "shortBreakDuration": "Short Break Duration (minutes)",
+        "longBreakDuration": "Long Break Duration (minutes)",
+        "longBreakInterval": "Long Break Interval",
+        "autoStartBreaks": "Auto-start Breaks",
+        "autoStartPomodoros": "Auto-start Pomodoros",
+        "soundNotifications": "Sound Notifications",
+        "systemNotifications": "System Notifications",
+        "darkMode": "Dark Mode",
+        "language": "Language"
+    },
+    "navigation": {
+        "timer": "Timer",
+        "log": "Activity Log",
+        "settings": "Settings"
+    },
+    "log": {
+        "noIntervals": "You don't have completed intervals yet"
+    },
+    "languages": {
+        "en": "English",
+        "pt-BR": "Português Brasileiro",
+        "ja": "日本語",
+        "es": "Español",
+        "fr": "Français",
+        "de": "Deutsch"
+    }
+}
