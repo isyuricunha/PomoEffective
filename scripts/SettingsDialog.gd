@@ -1,4 +1,4 @@
-extends WindowDialog
+extends Window
 
 # UI references
 @onready var focus_spinbox: SpinBox = $VBoxContainer/TimerSettings/FocusDuration/FocusSpinBox
@@ -99,3 +99,11 @@ func set_settings(settings: Dictionary):
 	current_settings = settings.duplicate()
 	original_settings = settings.duplicate()
 	_update_ui_from_settings()
+
+func show_settings():
+	# Show the window and center it
+	show()
+	# Center the window on screen
+	var screen_size = DisplayServer.screen_get_size()
+	var window_size = size
+	position = (screen_size - window_size) / 2

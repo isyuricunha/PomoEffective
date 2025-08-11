@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqxvhqxqxqxqx"]
+[gd_scene load_steps=3 format=3 uid="uid://main123"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_0x0x0"]
 [ext_resource type="Theme" path="res://themes/DarkOrangeTheme.tres" id="2_0x0x0"]

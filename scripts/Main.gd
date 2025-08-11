@@ -74,7 +74,7 @@ func _on_settings_pressed():
 		settings_dialog.settings_changed.connect(_on_settings_changed)
 		settings_dialog.set_settings(settings)
 	
-	$SettingsDialog.popup_centered()
+	$SettingsDialog.show_settings()
 
 func _start_timer():
 	if current_state == TimerState.IDLE:

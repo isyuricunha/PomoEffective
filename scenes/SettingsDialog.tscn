@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqxvhqxqxqxqx"]
+[gd_scene load_steps=2 format=3 uid="uid://settings123"]
 
 [ext_resource type="Script" path="res://scripts/SettingsDialog.gd" id="1_0x0x0"]
 
-[node name="SettingsDialog" type="WindowDialog"]
-popup_exclusive = true
-title = "Settings"
+[node name="SettingsDialog" type="Window"]
+title = "YuPomo Settings"
+initial_position = 2
 size = Vector2i(400, 500)
+visible = false
+wrap_controls = true
 script = ExtResource("1_0x0x0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -20,7 +22,7 @@ offset_bottom = -20.0
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "YuPomo Settings"
-label_settings = SubResource("LabelSettings_1")
+label_settings = SubResource("SettingsLabelSettings_1")
 horizontal_alignment = 1
 
 [node name="Spacer1" type="Control" parent="VBoxContainer"]
@@ -33,7 +35,7 @@ layout_mode = 2
 [node name="TimerLabel" type="Label" parent="VBoxContainer/TimerSettings"]
 layout_mode = 2
 text = "Timer Durations"
-label_settings = SubResource("LabelSettings_2")
+label_settings = SubResource("SettingsLabelSettings_2")
 
 [node name="FocusDuration" type="HBoxContainer" parent="VBoxContainer/TimerSettings"]
 layout_mode = 2
@@ -41,7 +43,7 @@ layout_mode = 2
 [node name="FocusLabel" type="Label" parent="VBoxContainer/TimerSettings/FocusDuration"]
 layout_mode = 2
 text = "Focus Time (minutes):"
-label_settings = SubResource("LabelSettings_3")
+label_settings = SubResource("SettingsLabelSettings_3")
 
 [node name="FocusSpinBox" type="SpinBox" parent="VBoxContainer/TimerSettings/FocusDuration"]
 layout_mode = 2
@@ -57,7 +59,7 @@ layout_mode = 2
 [node name="ShortBreakLabel" type="Label" parent="VBoxContainer/TimerSettings/ShortBreakDuration"]
 layout_mode = 2
 text = "Short Break (minutes):"
-label_settings = SubResource("LabelSettings_3")
+label_settings = SubResource("SettingsLabelSettings_3")
 
 [node name="ShortBreakSpinBox" type="SpinBox" parent="VBoxContainer/TimerSettings/ShortBreakDuration"]
 layout_mode = 2
@@ -73,7 +75,7 @@ layout_mode = 2
 [node name="LongBreakLabel" type="Label" parent="VBoxContainer/TimerSettings/LongBreakDuration"]
 layout_mode = 2
 text = "Long Break (minutes):"
-label_settings = SubResource("LabelSettings_3")
+label_settings = SubResource("SettingsLabelSettings_3")
 
 [node name="LongBreakSpinBox" type="SpinBox" parent="VBoxContainer/TimerSettings/LongBreakDuration"]
 layout_mode = 2
@@ -93,17 +95,17 @@ layout_mode = 2
 [node name="SoundLabel" type="Label" parent="VBoxContainer/SoundSettings"]
 layout_mode = 2
 text = "Sound & Notifications"
-label_settings = SubResource("LabelSettings_2")
+label_settings = SubResource("SettingsLabelSettings_2")
 
 [node name="SoundToggle" type="CheckBox" parent="VBoxContainer/SoundSettings"]
 layout_mode = 2
 text = "Enable sound notifications"
-label_settings = SubResource("LabelSettings_3")
+label_settings = SubResource("SettingsLabelSettings_3")
 
 [node name="SystemNotification" type="CheckBox" parent="VBoxContainer/SoundSettings"]
 layout_mode = 2
 text = "Show system notifications"
-label_settings = SubResource("LabelSettings_3")
+label_settings = SubResource("SettingsLabelSettings_3")
 
 [node name="Spacer3" type="Control" parent="VBoxContainer"]
 layout_mode = 2
@@ -115,7 +117,7 @@ layout_mode = 2
 [node name="ThemeLabel" type="Label" parent="VBoxContainer/ThemeSettings"]
 layout_mode = 2
 text = "Theme"
-label_settings = SubResource("LabelSettings_2")
+label_settings = SubResource("SettingsLabelSettings_2")
 
 [node name="ThemeOption" type="OptionButton" parent="VBoxContainer/ThemeSettings"]
 layout_mode = 2
@@ -144,14 +146,14 @@ layout_mode = 2
 text = "Save"
 custom_minimum_size = Vector2(80, 40)
 
-[sub_resource type="LabelSettings" id="LabelSettings_1"]
+[sub_resource type="LabelSettings" id="SettingsLabelSettings_1"]
 font_size = 24
 font_color = Color(1, 0.647059, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_2"]
+[sub_resource type="LabelSettings" id="SettingsLabelSettings_2"]
 font_size = 18
 font_color = Color(1, 0.647059, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_3"]
+[sub_resource type="LabelSettings" id="SettingsLabelSettings_3"]
 font_size = 14
 font_color = Color(0.8, 0.8, 0.8, 1)
