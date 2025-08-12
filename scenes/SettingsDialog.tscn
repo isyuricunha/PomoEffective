@@ -22,7 +22,7 @@ offset_bottom = -20.0
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "YuPomo Settings"
-label_settings = SubResource("SettingsLabelSettings_1")
+label_settings = SubResource("1")
 horizontal_alignment = 1
 
 [node name="Spacer1" type="Control" parent="VBoxContainer"]
@@ -35,7 +35,7 @@ layout_mode = 2
 [node name="TimerLabel" type="Label" parent="VBoxContainer/TimerSettings"]
 layout_mode = 2
 text = "Timer Durations"
-label_settings = SubResource("SettingsLabelSettings_2")
+label_settings = SubResource("2")
 
 [node name="FocusDuration" type="HBoxContainer" parent="VBoxContainer/TimerSettings"]
 layout_mode = 2
@@ -43,7 +43,7 @@ layout_mode = 2
 [node name="FocusLabel" type="Label" parent="VBoxContainer/TimerSettings/FocusDuration"]
 layout_mode = 2
 text = "Focus Time (minutes):"
-label_settings = SubResource("SettingsLabelSettings_3")
+label_settings = SubResource("3")
 
 [node name="FocusSpinBox" type="SpinBox" parent="VBoxContainer/TimerSettings/FocusDuration"]
 layout_mode = 2
@@ -59,7 +59,7 @@ layout_mode = 2
 [node name="ShortBreakLabel" type="Label" parent="VBoxContainer/TimerSettings/ShortBreakDuration"]
 layout_mode = 2
 text = "Short Break (minutes):"
-label_settings = SubResource("SettingsLabelSettings_3")
+label_settings = SubResource("3")
 
 [node name="ShortBreakSpinBox" type="SpinBox" parent="VBoxContainer/TimerSettings/ShortBreakDuration"]
 layout_mode = 2
@@ -75,7 +75,7 @@ layout_mode = 2
 [node name="LongBreakLabel" type="Label" parent="VBoxContainer/TimerSettings/LongBreakDuration"]
 layout_mode = 2
 text = "Long Break (minutes):"
-label_settings = SubResource("SettingsLabelSettings_3")
+label_settings = SubResource("3")
 
 [node name="LongBreakSpinBox" type="SpinBox" parent="VBoxContainer/TimerSettings/LongBreakDuration"]
 layout_mode = 2
@@ -95,17 +95,17 @@ layout_mode = 2
 [node name="SoundLabel" type="Label" parent="VBoxContainer/SoundSettings"]
 layout_mode = 2
 text = "Sound & Notifications"
-label_settings = SubResource("SettingsLabelSettings_2")
+label_settings = SubResource("2")
 
 [node name="SoundToggle" type="CheckBox" parent="VBoxContainer/SoundSettings"]
 layout_mode = 2
 text = "Enable sound notifications"
-label_settings = SubResource("SettingsLabelSettings_3")
+label_settings = SubResource("3")
 
 [node name="SystemNotification" type="CheckBox" parent="VBoxContainer/SoundSettings"]
 layout_mode = 2
 text = "Show system notifications"
-label_settings = SubResource("SettingsLabelSettings_3")
+label_settings = SubResource("3")
 
 [node name="Spacer3" type="Control" parent="VBoxContainer"]
 layout_mode = 2
@@ -117,7 +117,7 @@ layout_mode = 2
 [node name="ThemeLabel" type="Label" parent="VBoxContainer/ThemeSettings"]
 layout_mode = 2
 text = "Theme"
-label_settings = SubResource("SettingsLabelSettings_2")
+label_settings = SubResource("2")
 
 [node name="ThemeOption" type="OptionButton" parent="VBoxContainer/ThemeSettings"]
 layout_mode = 2
@@ -146,14 +146,14 @@ layout_mode = 2
 text = "Save"
 custom_minimum_size = Vector2(80, 40)
 
-[sub_resource type="LabelSettings" id="SettingsLabelSettings_1"]
+[sub_resource type="LabelSettings" id="1"]
 font_size = 24
 font_color = Color(1, 0.647059, 0, 1)
 
-[sub_resource type="LabelSettings" id="SettingsLabelSettings_2"]
+[sub_resource type="LabelSettings" id="2"]
 font_size = 18
 font_color = Color(1, 0.647059, 0, 1)
 
-[sub_resource type="LabelSettings" id="SettingsLabelSettings_3"]
+[sub_resource type="LabelSettings" id="3"]
 font_size = 14
 font_color = Color(0.8, 0.8, 0.8, 1)

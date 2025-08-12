@@ -34,13 +34,13 @@ layout_mode = 2
 [node name="Title" type="Label" parent="VBoxContainer/Header"]
 layout_mode = 2
 text = "YuPomo"
-label_settings = SubResource("LabelSettings_1")
+label_settings = SubResource("1")
 horizontal_alignment = 1
 
 [node name="Subtitle" type="Label" parent="VBoxContainer/Header"]
 layout_mode = 2
 text = "Focus • Break • Repeat"
-label_settings = SubResource("LabelSettings_2")
+label_settings = SubResource("2")
 horizontal_alignment = 1
 
 [node name="Spacer1" type="Control" parent="VBoxContainer"]
@@ -53,13 +53,13 @@ layout_mode = 2
 [node name="TimeLabel" type="Label" parent="VBoxContainer/TimerDisplay"]
 layout_mode = 2
 text = "25:00"
-label_settings = SubResource("LabelSettings_3")
+label_settings = SubResource("3")
 horizontal_alignment = 1
 
 [node name="PhaseLabel" type="Label" parent="VBoxContainer/TimerDisplay"]
 layout_mode = 2
 text = "Focus Time"
-label_settings = SubResource("LabelSettings_4")
+label_settings = SubResource("4")
 horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/TimerDisplay"]
@@ -100,7 +100,7 @@ layout_mode = 2
 [node name="TaskLabel" type="Label" parent="VBoxContainer/TaskSection"]
 layout_mode = 2
 text = "Current Task (Optional)"
-label_settings = SubResource("LabelSettings_5")
+label_settings = SubResource("5")
 horizontal_alignment = 1
 
 [node name="TaskInput" type="LineEdit" parent="VBoxContainer/TaskSection"]
@@ -122,22 +122,22 @@ one_shot = false
 
 [node name="NotificationSound" type="AudioStreamPlayer" parent="."]
 
-[sub_resource type="LabelSettings" id="LabelSettings_1"]
+[sub_resource type="LabelSettings" id="1"]
 font_size = 48
 font_color = Color(1, 0.647059, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_2"]
+[sub_resource type="LabelSettings" id="2"]
 font_size = 16
 font_color = Color(0.8, 0.8, 0.8, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_3"]
+[sub_resource type="LabelSettings" id="3"]
 font_size = 72
 font_color = Color(1, 0.647059, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_4"]
+[sub_resource type="LabelSettings" id="4"]
 font_size = 18
-font_color = Color(0.8, 0.8, 0.8, 1)
+font_color = Color(1, 0.647059, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_5"]
+[sub_resource type="LabelSettings" id="5"]
 font_size = 14
 font_color = Color(0.8, 0.8, 0.8, 1)
