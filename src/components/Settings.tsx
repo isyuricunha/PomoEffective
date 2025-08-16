@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSettings } from '../contexts/SettingsContext'
 import { useTheme } from '../contexts/ThemeContext'
+import { compareSemver, fetchLatestRelease } from '../utils/version'
+import { sendNotification } from '../utils/notifications'
 
 interface SettingsProps {
   isOpen: boolean
@@ -14,6 +16,8 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
   const { theme } = useTheme()
   const [tempSettings, setTempSettings] = useState(settings)
   const [lang, setLang] = useState<string>(() => (typeof window !== 'undefined' && (localStorage.getItem('lang') || i18n.language)) || 'en')
+  const [checkingUpdate, setCheckingUpdate] = useState(false)
+  const [updateStatus, setUpdateStatus] = useState<string>('')
 
   if (!isOpen) return null
 
@@ -38,6 +42,31 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
       soundEnabled: true,
       notificationsEnabled: true,
     })
+  }
+
+  const handleCheckUpdates = async () => {
+    try {
+      setCheckingUpdate(true)
+      setUpdateStatus('')
+      const latest = await fetchLatestRelease('isyuricunha', 'YuPomo')
+      if (!latest) {
+        setUpdateStatus('Could not check for updates. Please try again later.')
+        return
+      }
+      const current = (typeof __APP_VERSION__ === 'string' ? __APP_VERSION__ : '0.0.0')
+      const cmp = compareSemver(current, latest.latestVersion)
+      if (cmp < 0) {
+        setUpdateStatus(`Update available: v${latest.latestVersion} (current v${current})`)
+        void sendNotification({
+          title: 'YuPomo Update Available',
+          body: `v${latest.latestVersion} is available. Check the latest release.`,
+        })
+      } else {
+        setUpdateStatus('You are up to date.')
+      }
+    } finally {
+      setCheckingUpdate(false)
+    }
   }
 
   const handleInputChange = (field: keyof typeof tempSettings, value: number | boolean) => {
@@ -282,6 +311,31 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               }`}
             >
               💾 {t('settings.save')}
+            </button>
+          </div>
+        </div>
+
+        {/* Updates */}
+        <div>
+          <h3 className={`text-sm font-medium mb-4 ${
+            theme === 'dark' ? 'text-neutral-300' : 'text-gray-700'
+          }`}>
+            Updates
+          </h3>
+          <div className="flex items-center justify-between gap-3">
+            <div className={`text-sm ${theme === 'dark' ? 'text-neutral-400' : 'text-gray-600'}`}>
+              {updateStatus || 'Manually check for a new version.'}
+            </div>
+            <button
+              onClick={handleCheckUpdates}
+              disabled={checkingUpdate}
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                theme === 'dark'
+                  ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800'
+                  : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
+              } ${checkingUpdate ? 'opacity-60 cursor-not-allowed' : ''}`}
+            >
+              {checkingUpdate ? 'Checking…' : 'Check for updates now'}
             </button>
           </div>
         </div>
