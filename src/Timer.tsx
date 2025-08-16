@@ -177,142 +177,101 @@ const Timer = () => {
   }, [settings, timerState, timerStatus])
 
   return (
-    <div className={`min-h-screen transition-all duration-500 ${
-      theme === 'dark' 
-        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
-        : `bg-gradient-to-br ${stateInfo.bgColor}`
+    <div className={`min-h-screen transition-colors duration-500 ${
+      theme === 'dark' ? 'bg-black' : 'bg-neutral-100'
     } flex items-center justify-center p-4`}>
-      <div className={`rounded-3xl shadow-2xl p-8 max-w-lg w-full mx-4 backdrop-blur-sm transition-all duration-500 ${
+      <div className={`rounded-2xl shadow-2xl p-6 sm:p-8 max-w-md w-full mx-4 transition-colors duration-500 ${
         theme === 'dark'
-          ? 'bg-gray-800/90 border border-gray-700'
-          : 'bg-white/95 border border-white/20'
+          ? 'bg-neutral-950 border border-neutral-800'
+          : 'bg-white border border-neutral-200'
       }`}>
-        {/* Header Controls */}
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex gap-2">
-            <button
-              onClick={() => setShowSettings(true)}
-              className={`p-3 rounded-full transition-all duration-300 hover:scale-110 ${
-                theme === 'dark'
-                  ? 'bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              ⚙️
-            </button>
+        {/* Minimal Header Bar */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <span className={`h-3 w-3 rounded-full ${theme === 'dark' ? 'bg-red-500/30' : 'bg-red-400'}`} />
+            <span className={`h-3 w-3 rounded-full ${theme === 'dark' ? 'bg-yellow-500/30' : 'bg-yellow-400'}`} />
+            <span className={`h-3 w-3 rounded-full ${theme === 'dark' ? 'bg-green-500/30' : 'bg-green-400'}`} />
+          </div>
+          <div className="flex items-center gap-2">
             <button
               onClick={() => setShowStatistics(true)}
-              className={`p-3 rounded-full transition-all duration-300 hover:scale-110 ${
-                theme === 'dark'
-                  ? 'bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              className={`px-2 py-1 rounded-md text-sm ${
+                theme === 'dark' ? 'text-amber-400 hover:bg-neutral-900' : 'text-neutral-600 hover:bg-neutral-100'
               }`}
-            >
-              📊
-            </button>
+              aria-label="Statistics"
+            >📊</button>
+            <button
+              onClick={() => setShowSettings(true)}
+              className={`px-2 py-1 rounded-md text-sm ${
+                theme === 'dark' ? 'text-amber-400 hover:bg-neutral-900' : 'text-neutral-600 hover:bg-neutral-100'
+              }`}
+              aria-label="Settings"
+            >⚙️</button>
+            <button
+              onClick={toggleTheme}
+              className={`px-2 py-1 rounded-md text-sm ${
+                theme === 'dark' ? 'text-amber-400 hover:bg-neutral-900' : 'text-neutral-600 hover:bg-neutral-100'
+              }`}
+              aria-label="Toggle Theme"
+            >{theme === 'dark' ? '☀️' : '🌙'}</button>
           </div>
-          <button
-            onClick={toggleTheme}
-            className={`p-3 rounded-full transition-all duration-300 hover:scale-110 ${
-              theme === 'dark'
-                ? 'bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
-          >
-            {theme === 'dark' ? '☀️' : '🌙'}
-          </button>
         </div>
 
-        <div className="text-center">
-          {/* Header */}
-          <div className="mb-8">
-            <div className="text-5xl mb-3 animate-pulse">{stateInfo.emoji}</div>
-            <h1 className={`text-3xl font-bold mb-2 transition-colors ${
-              theme === 'dark' ? 'text-yellow-400' : stateInfo.textColor
-            }`}>
-              {stateInfo.label}
-            </h1>
-            <p className={`text-sm ${
-              theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
-            }`}>
-              Session {cycleCount + 1} • {getTodaySessions()} completed today
-            </p>
+        {/* Main Content */}
+        <div className="text-center select-none">
+          <div className={`mb-2 text-xs tracking-widest uppercase ${
+            theme === 'dark' ? 'text-neutral-400' : 'text-neutral-500'
+          }`}>
+            {stateInfo.label}
+          </div>
+          <div className={`${
+            theme === 'dark' ? 'text-neutral-100' : 'text-neutral-800'
+          } font-light font-mono tracking-tight text-6xl sm:text-7xl md:text-8xl`}>
+            {formatTime(timeLeft)}
           </div>
 
-          {/* Progress Ring */}
-          <div className="relative mb-8">
-            <svg className="w-64 h-64 mx-auto transform -rotate-90" viewBox="0 0 100 100">
-              {/* Background circle */}
-              <circle
-                cx="50"
-                cy="50"
-                r="45"
-                fill="none"
-                stroke={theme === 'dark' ? '#374151' : '#e5e7eb'}
-                strokeWidth="3"
-              />
-              {/* Progress circle */}
-              <circle
-                cx="50"
-                cy="50"
-                r="45"
-                fill="none"
-                stroke={theme === 'dark' ? '#fbbf24' : stateInfo.textColor.replace('text-', '#')}
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeDasharray={`${2 * Math.PI * 45}`}
-                strokeDashoffset={`${2 * Math.PI * 45 * (1 - getProgress() / 100)}`}
-                className="transition-all duration-1000 ease-out"
-              />
-            </svg>
-            {/* Timer Display */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className={`text-4xl md:text-5xl font-mono font-bold transition-colors ${
-                theme === 'dark' ? 'text-yellow-400' : stateInfo.textColor
-              }`}>
-                {formatTime(timeLeft)}
-              </div>
-            </div>
+          <div className={`mt-8 text-sm ${theme === 'dark' ? 'text-neutral-500' : 'text-neutral-500'}`}>
+            Session {cycleCount + 1} • {getTodaySessions()} today
           </div>
 
           {/* Control Buttons */}
-          <div className="space-y-4">
+          <div className="space-y-3 mt-8">
             {timerStatus === 'idle' && (
               <button
                 onClick={startTimer}
-                className={`w-full font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg ${
+                className={`w-full font-medium py-3 px-6 rounded-xl transition-colors ${
                   theme === 'dark'
-                    ? 'bg-yellow-500 hover:bg-yellow-400 text-gray-900'
-                    : `${stateInfo.buttonColor} text-white`
+                    ? 'bg-amber-500 hover:bg-amber-400 text-black'
+                    : 'bg-neutral-900 hover:bg-neutral-800 text-white'
                 }`}
               >
-                ▶️ Start Timer
+                ▶️ Start
               </button>
             )}
 
             {timerStatus === 'running' && (
               <button
                 onClick={pauseTimer}
-                className={`w-full font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg ${
+                className={`w-full font-medium py-3 px-6 rounded-xl transition-colors ${
                   theme === 'dark'
-                    ? 'bg-orange-500 hover:bg-orange-400 text-white'
-                    : 'bg-orange-500 hover:bg-orange-600 text-white'
+                    ? 'bg-amber-600 hover:bg-amber-500 text-black'
+                    : 'bg-neutral-900 hover:bg-neutral-800 text-white'
                 }`}
               >
-                ⏸️ Pause Timer
+                ⏸️ Pause
               </button>
             )}
 
             {timerStatus === 'paused' && (
               <button
                 onClick={startTimer}
-                className={`w-full font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg ${
+                className={`w-full font-medium py-3 px-6 rounded-xl transition-colors ${
                   theme === 'dark'
-                    ? 'bg-yellow-500 hover:bg-yellow-400 text-gray-900'
-                    : `${stateInfo.buttonColor} text-white`
+                    ? 'bg-amber-500 hover:bg-amber-400 text-black'
+                    : 'bg-neutral-900 hover:bg-neutral-800 text-white'
                 }`}
               >
-                ▶️ Resume Timer
+                ▶️ Resume
               </button>
             )}
 
@@ -320,50 +279,41 @@ const Timer = () => {
             <div className="flex gap-3">
               <button
                 onClick={resetTimer}
-                className={`flex-1 font-medium py-3 px-4 rounded-xl transition-all duration-300 hover:scale-105 ${
+                className={`flex-1 font-medium py-3 px-4 rounded-xl transition-colors ${
                   theme === 'dark'
-                    ? 'bg-gray-700 hover:bg-gray-600 text-gray-200'
-                    : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                    ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-300 border border-neutral-800'
+                    : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'
                 }`}
               >
-                🔄 Reset
+                Cancel
               </button>
               <button
                 onClick={resetCycle}
-                className={`flex-1 font-medium py-3 px-4 rounded-xl transition-all duration-300 hover:scale-105 ${
+                className={`flex-1 font-medium py-3 px-4 rounded-xl transition-colors ${
                   theme === 'dark'
-                    ? 'bg-gray-700 hover:bg-gray-600 text-gray-200'
-                    : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                    ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-300 border border-neutral-800'
+                    : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'
                 }`}
               >
-                🆕 New Cycle
+                New Cycle
               </button>
             </div>
           </div>
 
-          {/* Progress Indicator */}
+          {/* Minimal Progress Indicator */}
           <div className="mt-8">
-            <div className="flex justify-center space-x-3 mb-3">
+            <div className="flex justify-center gap-2">
               {[...Array(4)].map((_, i) => (
-                <div
+                <span
                   key={i}
-                  className={`w-4 h-4 rounded-full transition-all duration-500 transform ${
+                  className={`h-1.5 w-8 rounded-full ${
                     i < cycleCount % 4
-                      ? theme === 'dark'
-                        ? 'bg-yellow-400 scale-110 shadow-lg shadow-yellow-400/50'
-                        : `${stateInfo.textColor.replace('text-', 'bg-')} scale-110 shadow-lg`
-                      : theme === 'dark'
-                        ? 'bg-gray-600'
-                        : 'bg-gray-200'
+                      ? theme === 'dark' ? 'bg-amber-500' : 'bg-neutral-800'
+                      : theme === 'dark' ? 'bg-neutral-800' : 'bg-neutral-300'
                   }`}
                 />
               ))}
             </div>
-            <p className={`text-sm font-medium ${
-              theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-            }`}>
-              🍅 Pomodoro Progress ({cycleCount % 4}/4)
-            </p>
           </div>
         </div>
       </div>

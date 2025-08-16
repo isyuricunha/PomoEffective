@@ -35,25 +35,25 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-      <div className={`rounded-3xl shadow-2xl p-8 max-w-md w-full mx-4 transition-all duration-300 ${
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+      <div className={`rounded-2xl shadow-2xl p-6 max-w-md w-full mx-4 transition-colors duration-300 ${
         theme === 'dark'
-          ? 'bg-gray-800 border border-gray-700'
+          ? 'bg-neutral-950 border border-neutral-800'
           : 'bg-white border border-gray-200'
       }`}>
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
-          <h2 className={`text-2xl font-bold ${
-            theme === 'dark' ? 'text-yellow-400' : 'text-gray-800'
+          <h2 className={`text-xl font-semibold ${
+            theme === 'dark' ? 'text-amber-400' : 'text-gray-800'
           }`}>
             ⚙️ Settings
           </h2>
           <button
             onClick={onClose}
-            className={`p-2 rounded-full transition-colors ${
+            className={`p-2 rounded-md transition-colors ${
               theme === 'dark'
-                ? 'hover:bg-gray-700 text-gray-400'
-                : 'hover:bg-gray-100 text-gray-600'
+                ? 'text-neutral-400 hover:bg-neutral-900'
+                : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
             ✕
@@ -63,8 +63,8 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
         {/* Timer Settings */}
         <div className="space-y-6">
           <div>
-            <h3 className={`text-lg font-semibold mb-4 ${
-              theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
+            <h3 className={`text-sm font-medium mb-4 ${
+              theme === 'dark' ? 'text-neutral-300' : 'text-gray-700'
             }`}>
               Timer Durations
             </h3>
@@ -73,7 +73,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               {/* Work Duration */}
               <div className="flex items-center justify-between">
                 <label className={`font-medium ${
-                  theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                  theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
                   🍅 Work Session
                 </label>
@@ -86,12 +86,12 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                     onChange={(e) => handleInputChange('work', parseInt(e.target.value) || 1)}
                     className={`w-16 px-2 py-1 rounded-lg text-center font-mono ${
                       theme === 'dark'
-                        ? 'bg-gray-700 border border-gray-600 text-white'
+                        ? 'bg-neutral-900 border border-neutral-800 text-neutral-100'
                         : 'bg-gray-50 border border-gray-300 text-gray-900'
                     }`}
                   />
                   <span className={`text-sm ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
+                    theme === 'dark' ? 'text-neutral-500' : 'text-gray-500'
                   }`}>
                     min
                   </span>
@@ -101,7 +101,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               {/* Short Break Duration */}
               <div className="flex items-center justify-between">
                 <label className={`font-medium ${
-                  theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                  theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
                   ☕ Short Break
                 </label>
@@ -129,7 +129,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               {/* Long Break Duration */}
               <div className="flex items-center justify-between">
                 <label className={`font-medium ${
-                  theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                  theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
                   🌟 Long Break
                 </label>
@@ -158,8 +158,8 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
 
           {/* Notification Settings */}
           <div>
-            <h3 className={`text-lg font-semibold mb-4 ${
-              theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
+            <h3 className={`text-sm font-medium mb-4 ${
+              theme === 'dark' ? 'text-neutral-300' : 'text-gray-700'
             }`}>
               Notifications & Sound
             </h3>
@@ -168,7 +168,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               {/* Sound Toggle */}
               <div className="flex items-center justify-between">
                 <label className={`font-medium ${
-                  theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                  theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
                   🔊 Sound Alerts
                 </label>
@@ -176,8 +176,8 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                   onClick={() => handleInputChange('soundEnabled', !tempSettings.soundEnabled)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     tempSettings.soundEnabled
-                      ? theme === 'dark' ? 'bg-yellow-500' : 'bg-blue-600'
-                      : theme === 'dark' ? 'bg-gray-600' : 'bg-gray-300'
+                      ? theme === 'dark' ? 'bg-amber-500' : 'bg-blue-600'
+                      : theme === 'dark' ? 'bg-neutral-700' : 'bg-gray-300'
                   }`}
                 >
                   <span
@@ -191,7 +191,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               {/* Notifications Toggle */}
               <div className="flex items-center justify-between">
                 <label className={`font-medium ${
-                  theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                  theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
                   🔔 Desktop Notifications
                 </label>
@@ -199,8 +199,8 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                   onClick={() => handleInputChange('notificationsEnabled', !tempSettings.notificationsEnabled)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     tempSettings.notificationsEnabled
-                      ? theme === 'dark' ? 'bg-yellow-500' : 'bg-blue-600'
-                      : theme === 'dark' ? 'bg-gray-600' : 'bg-gray-300'
+                      ? theme === 'dark' ? 'bg-amber-500' : 'bg-blue-600'
+                      : theme === 'dark' ? 'bg-neutral-700' : 'bg-gray-300'
                   }`}
                 >
                   <span
@@ -217,9 +217,9 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
           <div className="flex gap-3 pt-4">
             <button
               onClick={handleReset}
-              className={`flex-1 py-3 px-4 rounded-xl font-medium transition-all duration-300 hover:scale-105 ${
+              className={`flex-1 py-3 px-4 rounded-xl font-medium transition-colors ${
                 theme === 'dark'
-                  ? 'bg-gray-700 hover:bg-gray-600 text-gray-200'
+                  ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-300 border border-neutral-800'
                   : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
               }`}
             >
@@ -227,9 +227,9 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
             </button>
             <button
               onClick={handleSave}
-              className={`flex-1 py-3 px-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 ${
+              className={`flex-1 py-3 px-4 rounded-xl font-semibold transition-colors ${
                 theme === 'dark'
-                  ? 'bg-yellow-500 hover:bg-yellow-400 text-gray-900'
+                  ? 'bg-amber-500 hover:bg-amber-400 text-black'
                   : 'bg-blue-600 hover:bg-blue-700 text-white'
               }`}
             >

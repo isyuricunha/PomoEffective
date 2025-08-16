@@ -156,25 +156,25 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-      <div className={`rounded-3xl shadow-2xl p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto transition-all duration-300 ${
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+      <div className={`rounded-2xl shadow-2xl p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto transition-colors duration-300 ${
         theme === 'dark'
-          ? 'bg-gray-800 border border-gray-700'
+          ? 'bg-neutral-950 border border-neutral-800'
           : 'bg-white border border-gray-200'
       }`}>
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
-          <h2 className={`text-2xl font-bold ${
-            theme === 'dark' ? 'text-yellow-400' : 'text-gray-800'
+          <h2 className={`text-xl font-semibold ${
+            theme === 'dark' ? 'text-amber-400' : 'text-gray-800'
           }`}>
-            📊 Productivity Statistics
+            Productivity Statistics
           </h2>
           <button
             onClick={onClose}
-            className={`p-2 rounded-full transition-colors ${
+            className={`p-2 rounded-md transition-colors ${
               theme === 'dark'
-                ? 'hover:bg-gray-700 text-gray-400'
-                : 'hover:bg-gray-100 text-gray-600'
+                ? 'text-neutral-400 hover:bg-neutral-900'
+                : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
             ✕
@@ -184,11 +184,11 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className={`p-4 rounded-xl ${
-            theme === 'dark' ? 'bg-gray-700' : 'bg-gray-50'
+            theme === 'dark' ? 'bg-neutral-900 border border-neutral-800' : 'bg-gray-50'
           }`}>
             <div className="text-center">
-              <div className={`text-2xl font-bold ${
-                theme === 'dark' ? 'text-yellow-400' : 'text-blue-600'
+              <div className={`font-mono tabular-nums text-3xl md:text-4xl font-semibold ${
+                theme === 'dark' ? 'text-amber-400' : 'text-blue-600'
               }`}>
                 {todaySessions}
               </div>
@@ -201,11 +201,11 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
           </div>
           
           <div className={`p-4 rounded-xl ${
-            theme === 'dark' ? 'bg-gray-700' : 'bg-gray-50'
+            theme === 'dark' ? 'bg-neutral-900 border border-neutral-800' : 'bg-gray-50'
           }`}>
             <div className="text-center">
-              <div className={`text-2xl font-bold ${
-                theme === 'dark' ? 'text-yellow-400' : 'text-blue-600'
+              <div className={`font-mono tabular-nums text-3xl md:text-4xl font-semibold ${
+                theme === 'dark' ? 'text-amber-400' : 'text-blue-600'
               }`}>
                 {weeklyTotal}
               </div>
@@ -218,11 +218,11 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
           </div>
           
           <div className={`p-4 rounded-xl ${
-            theme === 'dark' ? 'bg-gray-700' : 'bg-gray-50'
+            theme === 'dark' ? 'bg-neutral-900 border border-neutral-800' : 'bg-gray-50'
           }`}>
             <div className="text-center">
-              <div className={`text-2xl font-bold ${
-                theme === 'dark' ? 'text-yellow-400' : 'text-blue-600'
+              <div className={`font-mono tabular-nums text-3xl md:text-4xl font-semibold ${
+                theme === 'dark' ? 'text-amber-400' : 'text-blue-600'
               }`}>
                 {totalSessions}
               </div>
@@ -238,17 +238,17 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
         {/* Period Toggle */}
         <div className="flex justify-center mb-6">
           <div className={`flex rounded-lg p-1 ${
-            theme === 'dark' ? 'bg-gray-700' : 'bg-gray-100'
+            theme === 'dark' ? 'bg-neutral-900 border border-neutral-800' : 'bg-gray-100'
           }`}>
             <button
               onClick={() => setViewPeriod('week')}
               className={`px-4 py-2 rounded-md transition-colors ${
                 viewPeriod === 'week'
                   ? theme === 'dark'
-                    ? 'bg-yellow-500 text-gray-900'
+                    ? 'bg-amber-500 hover:bg-amber-600 text-black'
                     : 'bg-blue-600 text-white'
                   : theme === 'dark'
-                    ? 'text-gray-300 hover:bg-gray-600'
+                    ? 'text-neutral-300 hover:bg-neutral-800'
                     : 'text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -259,10 +259,10 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
               className={`px-4 py-2 rounded-md transition-colors ${
                 viewPeriod === 'month'
                   ? theme === 'dark'
-                    ? 'bg-yellow-500 text-gray-900'
+                    ? 'bg-amber-500 hover:bg-amber-600 text-black'
                     : 'bg-blue-600 text-white'
                   : theme === 'dark'
-                    ? 'text-gray-300 hover:bg-gray-600'
+                    ? 'text-neutral-300 hover:bg-neutral-800'
                     : 'text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -275,10 +275,10 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Daily Sessions Chart */}
           <div className={`p-4 rounded-xl ${
-            theme === 'dark' ? 'bg-gray-700' : 'bg-gray-50'
+            theme === 'dark' ? 'bg-neutral-900 border border-neutral-800' : 'bg-gray-50'
           }`}>
             <h3 className={`text-lg font-semibold mb-4 ${
-              theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
+              theme === 'dark' ? 'text-neutral-200' : 'text-gray-700'
             }`}>
               Daily Work Sessions
             </h3>
@@ -289,10 +289,10 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
 
           {/* Work Time Chart */}
           <div className={`p-4 rounded-xl ${
-            theme === 'dark' ? 'bg-gray-700' : 'bg-gray-50'
+            theme === 'dark' ? 'bg-neutral-900 border border-neutral-800' : 'bg-gray-50'
           }`}>
             <h3 className={`text-lg font-semibold mb-4 ${
-              theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
+              theme === 'dark' ? 'text-neutral-200' : 'text-gray-700'
             }`}>
               Daily Work Time
             </h3>
@@ -303,7 +303,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
 
           {/* Session Types Distribution */}
           <div className={`p-4 rounded-xl lg:col-span-2 ${
-            theme === 'dark' ? 'bg-gray-700' : 'bg-gray-50'
+            theme === 'dark' ? 'bg-neutral-900 border border-neutral-800' : 'bg-gray-50'
           }`}>
             <h3 className={`text-lg font-semibold mb-4 text-center ${
               theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
@@ -320,7 +320,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
 
         {/* Insights */}
         <div className={`mt-6 p-4 rounded-xl ${
-          theme === 'dark' ? 'bg-gray-700' : 'bg-gray-50'
+          theme === 'dark' ? 'bg-neutral-900 border border-neutral-800' : 'bg-gray-50'
         }`}>
           <h3 className={`text-lg font-semibold mb-3 ${
             theme === 'dark' ? 'text-gray-200' : 'text-gray-700'

@@ -32,3 +32,21 @@ body {
   padding: 2rem;
   text-align: center;
 }
+
+/* Theme-scoped body colors for true black dark mode */
+/* Default to dark background to match app's default theme */
+body {
+  background-color: #000; /* true black */
+  color: #e5e5e5; /* neutral-200/300 equivalent */
+}
+
+/* Explicit light and dark overrides when theme classes are present */
+.light body {
+  background-color: #ffffff;
+  color: #111827; /* neutral-900 */
+}
+
+.dark body {
+  background-color: #000000; /* true black */
+  color: #e5e5e5;
+}

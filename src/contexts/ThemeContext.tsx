@@ -22,15 +22,14 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [theme, setTheme] = useState<Theme>('light')
+  // Default to dark for true-black look, unless user has saved preference
+  const [theme, setTheme] = useState<Theme>('dark')
 
   useEffect(() => {
-    // Check for saved theme preference or default to light mode
+    // Apply saved theme if present; otherwise stay on default 'dark'
     const savedTheme = localStorage.getItem('pomodoro-theme') as Theme
     if (savedTheme) {
       setTheme(savedTheme)
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark')
     }
   }, [])
 
