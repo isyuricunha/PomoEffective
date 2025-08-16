@@ -160,7 +160,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                     onChange={(e) => handleInputChange('shortBreak', parseInt(e.target.value) || 1)}
                     className={`w-16 px-2 py-1 rounded-lg text-center font-mono ${
                       theme === 'dark'
-                        ? 'bg-gray-700 border border-gray-600 text-white'
+                        ? 'bg-neutral-900 border border-neutral-800 text-neutral-100'
                         : 'bg-gray-50 border border-gray-300 text-gray-900'
                     }`}
                   />
@@ -188,7 +188,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                     onChange={(e) => handleInputChange('longBreak', parseInt(e.target.value) || 1)}
                     className={`w-16 px-2 py-1 rounded-lg text-center font-mono ${
                       theme === 'dark'
-                        ? 'bg-gray-700 border border-gray-600 text-white'
+                        ? 'bg-neutral-900 border border-neutral-800 text-neutral-100'
                         : 'bg-gray-50 border border-gray-300 text-gray-900'
                     }`}
                   />

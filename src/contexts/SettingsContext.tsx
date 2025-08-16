@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, useRef, ReactNode } from 'react'
 
 export interface TimerSettings {
   work: number // in minutes
@@ -53,6 +53,7 @@ const getTauriFS = async () => {
 
 export const SettingsProvider = ({ children }: SettingsProviderProps) => {
   const [settings, setSettings] = useState<TimerSettings>(DEFAULT_SETTINGS)
+  const saveTimerRef = useRef<number | null>(null)
 
   // Load settings on mount
   useEffect(() => {
@@ -110,7 +111,13 @@ export const SettingsProvider = ({ children }: SettingsProviderProps) => {
   const updateSettings = (newSettings: Partial<TimerSettings>) => {
     const updatedSettings = { ...settings, ...newSettings }
     setSettings(updatedSettings)
-    saveSettings(updatedSettings)
+    // debounce persisting
+    if (saveTimerRef.current) {
+      clearTimeout(saveTimerRef.current)
+    }
+    saveTimerRef.current = window.setTimeout(() => {
+      saveSettings(updatedSettings)
+    }, 300)
   }
 
   const resetSettings = () => {

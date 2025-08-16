@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useStatistics } from '../contexts/StatisticsContext'
 import { useTheme } from '../contexts/ThemeContext'
@@ -42,11 +42,11 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
   if (!isOpen) return null
 
   const days = viewPeriod === 'week' ? 7 : 30
-  const dailyStats = getDailyStats(days)
+  const dailyStats = useMemo(() => getDailyStats(days), [getDailyStats, days])
   
-  const totalSessions = getTotalSessions()
-  const todaySessions = getTodaySessions()
-  const weeklyTotal = getWeeklyTotal()
+  const totalSessions = useMemo(() => getTotalSessions(), [getTotalSessions])
+  const todaySessions = useMemo(() => getTodaySessions(), [getTodaySessions])
+  const weeklyTotal = useMemo(() => getWeeklyTotal(), [getWeeklyTotal])
 
   // Chart colors based on theme
   const chartColors = {
@@ -58,7 +58,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
   }
 
   // Bar chart data for daily sessions
-  const barChartData = {
+  const barChartData = useMemo(() => ({
     labels: dailyStats.map(stat => {
       const date = new Date(stat.date)
       return date.toLocaleDateString(i18n.language || undefined, { weekday: 'short', month: 'short', day: 'numeric' })
@@ -73,10 +73,10 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
         borderRadius: 4,
       },
     ],
-  }
+  }), [dailyStats, i18n.language, chartColors.background, chartColors.primary, t])
 
   // Line chart data for work time
-  const lineChartData = {
+  const lineChartData = useMemo(() => ({
     labels: dailyStats.map(stat => {
       const date = new Date(stat.date)
       return date.toLocaleDateString(i18n.language || undefined, { weekday: 'short', month: 'short', day: 'numeric' })
@@ -91,14 +91,16 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
         fill: true,
       },
     ],
-  }
+  }), [dailyStats, i18n.language, chartColors.secondary, chartColors.background, t])
 
   // Doughnut chart for session types
-  const totalWorkSessions = dailyStats.reduce((sum, stat) => sum + stat.workSessions, 0)
-  const totalShortBreaks = dailyStats.reduce((sum, stat) => sum + stat.shortBreaks, 0)
-  const totalLongBreaks = dailyStats.reduce((sum, stat) => sum + stat.longBreaks, 0)
+  const { totalWorkSessions, totalShortBreaks, totalLongBreaks } = useMemo(() => ({
+    totalWorkSessions: dailyStats.reduce((sum, stat) => sum + stat.workSessions, 0),
+    totalShortBreaks: dailyStats.reduce((sum, stat) => sum + stat.shortBreaks, 0),
+    totalLongBreaks: dailyStats.reduce((sum, stat) => sum + stat.longBreaks, 0),
+  }), [dailyStats])
 
-  const doughnutData = {
+  const doughnutData = useMemo(() => ({
     labels: [t('stats.dailyWorkSessions'), t('labels.shortBreak'), t('labels.longBreak')],
     datasets: [
       {
@@ -111,7 +113,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
         borderWidth: 0,
       },
     ],
-  }
+  }), [t, totalWorkSessions, totalShortBreaks, totalLongBreaks, chartColors.primary, chartColors.secondary, chartColors.tertiary])
 
   const chartOptions = {
     responsive: true,
