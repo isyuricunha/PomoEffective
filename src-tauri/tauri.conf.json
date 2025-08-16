@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "YuPomo",
-    "version": "0.1.16"
+    "version": "0.1.22"
   },
   "tauri": {
     "allowlist": {
@@ -24,7 +24,10 @@
         "all": false,
         "readFile": true,
         "writeFile": true,
-        "scope": ["$APPDATA/pomodoro-settings.json", "$APPDATA/pomodoro-history.json"]
+        "scope": [
+          "$APPDATA/pomodoro-settings.json",
+          "$APPDATA/pomodoro-history.json"
+        ]
       }
     },
     "bundle": {
