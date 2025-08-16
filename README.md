@@ -6,9 +6,17 @@ A beautiful, minimalist Pomodoro timer built with React, TypeScript, Vite, and T
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/isyuricunha/YuPomo)
 ![License](https://img.shields.io/github/license/isyuricunha/YuPomo)
 
+—
+
+- Website: https://yuricunha.com
+- Demo: https://yupomo.yuricunha.com/
+- Repo: https://github.com/isyuricunha/YuPomo
+- X/Twitter: https://x.com/isyuricunha
+- Email: me@yuricunha.com
+
 ## ✨ Features
 
-- **🎯 Full Pomodoro Technique**: 25-min work sessions, 5-min short breaks, 15-min long breaks
+- **🎯 Full Pomodoro Technique**: 25‑min work sessions, 5‑min short breaks, 15‑min long breaks
 - **🌙 Dark/Light Mode**: True black + amber in dark mode, clean and minimal in light
 - **⚙️ Customizable Settings**: Adjust timer durations, sound alerts, and notifications
 - **📊 Productivity Statistics**: Track your progress with interactive charts
@@ -16,12 +24,13 @@ A beautiful, minimalist Pomodoro timer built with React, TypeScript, Vite, and T
 - **🔊 Sound Alerts**: Audio feedback for session transitions
 - **💾 Data Persistence**: Settings and statistics saved locally
 - **📱 Responsive Design**: Works perfectly on desktop and mobile
- - **🌍 Localization (i18n)**: Full multi-language support with runtime language switch
+ - **🌍 Localization (i18n)**: Full multi‑language support with runtime language switch
+ - **📣 Update notification**: Detects latest GitHub release and shows an in‑app banner when a newer version is available
 
 ## 🚀 Quick Start
 
 ### Web Version
-Visit the hosted web app: [Coming Soon]
+Use the hosted web app: https://yupomo.yuricunha.com/
 
 ### Desktop Installation
 
@@ -43,7 +52,7 @@ Visit the hosted web app: [Coming Soon]
 ## 🛠️ Development
 
 ### Prerequisites
-- Node.js 18+ 
+- Node.js 18+
 - Rust (for Tauri desktop builds)
 - Git
 
@@ -76,11 +85,37 @@ npm run preview
 
 #### Desktop Build
 ```bash
-# Build desktop app for current platform
-npm run tauri build
+# Windows
+npm run build:win
 
-# Generated files will be in src-tauri/target/release/bundle/
+# macOS (Intel)
+npm run build:mac:intel
+
+# macOS (Apple Silicon)
+npm run build:mac:arm
+
+# Linux (if toolchain configured)
+npm run build:linux
+
+# Bundles at: src-tauri/target/release/bundle/
 ```
+
+### Release & versioning
+
+YuPomo uses npm version lifecycle to keep versions in sync across web and Tauri:
+
+```powershell
+# Patch/minor/major — updates package.json, syncs Tauri files, creates tag and pushes
+npm version patch -m "chore(release): v%s"
+npm version minor -m "chore(release): v%s"
+npm version major -m "chore(release): v%s"
+```
+
+What happens under the hood:
+
+- `scripts/sync-version.mjs` updates `src-tauri/tauri.conf.json` and `src-tauri/Cargo.toml`.
+- The `version` script stages those files into the version commit.
+- `postversion` pushes the commit and tag to origin.
 
 ## 📦 Tech Stack
 
@@ -91,6 +126,7 @@ npm run tauri build
 - **Storage**: localStorage (web) + Tauri filesystem (desktop)
 - **Notifications**: Web Notification API + Tauri notifications
  - **i18n**: i18next + react-i18next
+ - **Update check**: GitHub Releases API
 
 ## 🌍 Localization
 
@@ -138,8 +174,18 @@ How to change the language:
 
 ### Notifications
 - Desktop notifications for session completion
-- Sound alerts with customizable volume
+- Sound alerts
 - Visual progress indicators
+
+## 🔐 Privacy
+
+Your privacy matters. YuPomo does not collect or send any personal data or telemetry.
+
+- All preferences and statistics are stored locally:
+  - Web: `localStorage`
+  - Desktop: Tauri AppData (`pomodoro-settings.json`, `pomodoro-history.json`)
+- Notifications and sounds are generated locally on your device.
+- The optional update banner only calls the public GitHub Releases API to check the latest version.
 
 ## 📈 Statistics
 
@@ -173,7 +219,10 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 - 🐛 [Report Issues](https://github.com/isyuricunha/YuPomo/issues)
 - 💡 [Request Features](https://github.com/isyuricunha/YuPomo/issues/new)
-- 📖 [Documentation](https://github.com/isyuricunha/YuPomo/wiki)
+- 🌐 Demo: https://yupomo.yuricunha.com/
+- 🐦 X/Twitter: https://x.com/isyuricunha
+- ✉️ Email: me@yuricunha.com
+- 🔗 Website: https://yuricunha.com
 
 ---
 
