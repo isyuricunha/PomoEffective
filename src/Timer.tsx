@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useTheme } from './contexts/ThemeContext'
 import { useSettings } from './contexts/SettingsContext'
 import { useStatistics } from './contexts/StatisticsContext'
@@ -18,6 +19,7 @@ interface TimerConfig {
 // This will be replaced by settings from context
 
 const Timer = () => {
+  const { t } = useTranslation()
   const { settings } = useSettings()
   const { addSession, getTodaySessions } = useStatistics()
   const [showSettings, setShowSettings] = useState(false)
@@ -75,8 +77,11 @@ const Timer = () => {
     const currentStateLabel = getStateInfo().label
     if (settings.notificationsEnabled) {
       await sendNotification({
-        title: 'YuPomo',
-        body: `${currentStateLabel} completed! ${timerState === 'work' ? 'Time for a break!' : 'Ready to focus?'}`,
+        title: t('app.title'),
+        body: t('timer.completed', {
+          label: currentStateLabel,
+          next: timerState === 'work' ? t('timer.next_break') : t('timer.next_focus')
+        }),
       })
     }
     
@@ -133,11 +138,11 @@ const Timer = () => {
   const getStateInfo = () => {
     switch (timerState) {
       case 'work':
-        return { label: 'Focus Session' }
+        return { label: t('labels.focus') }
       case 'shortBreak':
-        return { label: 'Short Break' }
+        return { label: t('labels.shortBreak') }
       case 'longBreak':
-        return { label: 'Long Break' }
+        return { label: t('labels.longBreak') }
     }
   }
 
@@ -207,7 +212,7 @@ const Timer = () => {
           </div>
 
           <div className={`mt-8 text-sm ${theme === 'dark' ? 'text-neutral-500' : 'text-neutral-500'}`}>
-            Session {cycleCount + 1} • {getTodaySessions()} today
+            {t('timer.session')} {cycleCount + 1} • {getTodaySessions()} {t('timer.today')}
           </div>
 
           {/* Control Buttons */}
@@ -221,7 +226,7 @@ const Timer = () => {
                     : 'bg-neutral-900 hover:bg-neutral-800 text-white'
                 }`}
               >
-                ▶️ Start
+                ▶️ {t('timer.start')}
               </button>
             )}
 
@@ -234,7 +239,7 @@ const Timer = () => {
                     : 'bg-neutral-900 hover:bg-neutral-800 text-white'
                 }`}
               >
-                ⏸️ Pause
+                ⏸️ {t('timer.pause')}
               </button>
             )}
 
@@ -247,7 +252,7 @@ const Timer = () => {
                     : 'bg-neutral-900 hover:bg-neutral-800 text-white'
                 }`}
               >
-                ▶️ Resume
+                ▶️ {t('timer.resume')}
               </button>
             )}
 
@@ -261,7 +266,7 @@ const Timer = () => {
                     : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'
                 }`}
               >
-                Cancel
+                {t('timer.cancel')}
               </button>
               <button
                 onClick={resetCycle}
@@ -271,7 +276,7 @@ const Timer = () => {
                     : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'
                 }`}
               >
-                New Cycle
+                {t('timer.newCycle')}
               </button>
             </div>
           </div>

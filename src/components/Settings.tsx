@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSettings } from '../contexts/SettingsContext'
 import { useTheme } from '../contexts/ThemeContext'
 
@@ -8,14 +9,21 @@ interface SettingsProps {
 }
 
 const Settings = ({ isOpen, onClose }: SettingsProps) => {
+  const { t, i18n } = useTranslation()
   const { settings, updateSettings, resetSettings } = useSettings()
   const { theme } = useTheme()
   const [tempSettings, setTempSettings] = useState(settings)
+  const [lang, setLang] = useState<string>(() => (typeof window !== 'undefined' && (localStorage.getItem('lang') || i18n.language)) || 'en')
 
   if (!isOpen) return null
 
   const handleSave = () => {
     updateSettings(tempSettings)
+    // persist language and switch
+    try {
+      localStorage.setItem('lang', lang)
+    } catch {}
+    i18n.changeLanguage(lang)
     onClose()
   }
 
@@ -46,7 +54,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
           <h2 className={`text-xl font-semibold ${
             theme === 'dark' ? 'text-amber-400' : 'text-gray-800'
           }`}>
-            ⚙️ Settings
+            ⚙️ {t('settings.title')}
           </h2>
           <button
             onClick={onClose}
@@ -62,11 +70,36 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
 
         {/* Timer Settings */}
         <div className="space-y-6">
+          {/* Language */}
           <div>
             <h3 className={`text-sm font-medium mb-4 ${
               theme === 'dark' ? 'text-neutral-300' : 'text-gray-700'
             }`}>
-              Timer Durations
+              {t('settings.language')}
+            </h3>
+            <div className="flex items-center justify-between">
+              <label className={`font-medium ${
+                theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
+              }`}>
+                🌐
+              </label>
+              <select
+                value={lang}
+                onChange={(e) => setLang(e.target.value)}
+                className={`px-3 py-2 rounded-lg ${
+                  theme === 'dark' ? 'bg-neutral-900 border border-neutral-800 text-neutral-100' : 'bg-gray-50 border border-gray-300 text-gray-900'
+                }`}
+              >
+                <option value="en">{t('languages.en')}</option>
+                <option value="pt-BR">{t('languages.pt-BR')}</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <h3 className={`text-sm font-medium mb-4 ${
+              theme === 'dark' ? 'text-neutral-300' : 'text-gray-700'
+            }`}>
+              {t('settings.timerDurations')}
             </h3>
             
             <div className="space-y-4">
@@ -75,7 +108,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                 <label className={`font-medium ${
                   theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
-                  🍅 Work Session
+                  🍅 {t('settings.workSession')}
                 </label>
                 <div className="flex items-center space-x-2">
                   <input
@@ -93,7 +126,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                   <span className={`text-sm ${
                     theme === 'dark' ? 'text-neutral-500' : 'text-gray-500'
                   }`}>
-                    min
+                    {t('settings.minutes')}
                   </span>
                 </div>
               </div>
@@ -103,7 +136,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                 <label className={`font-medium ${
                   theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
-                  ☕ Short Break
+                  ☕ {t('settings.shortBreak')}
                 </label>
                 <div className="flex items-center space-x-2">
                   <input
@@ -121,7 +154,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                   <span className={`text-sm ${
                     theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
                   }`}>
-                    min
+                    {t('settings.minutes')}
                   </span>
                 </div>
               </div>
@@ -131,7 +164,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                 <label className={`font-medium ${
                   theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
-                  🌟 Long Break
+                  🌟 {t('settings.longBreak')}
                 </label>
                 <div className="flex items-center space-x-2">
                   <input
@@ -149,7 +182,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                   <span className={`text-sm ${
                     theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
                   }`}>
-                    min
+                    {t('settings.minutes')}
                   </span>
                 </div>
               </div>
@@ -161,7 +194,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
             <h3 className={`text-sm font-medium mb-4 ${
               theme === 'dark' ? 'text-neutral-300' : 'text-gray-700'
             }`}>
-              Notifications & Sound
+              {t('settings.notificationsAndSound')}
             </h3>
             
             <div className="space-y-4">
@@ -170,7 +203,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                 <label className={`font-medium ${
                   theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
-                  🔊 Sound Alerts
+                  🔊 {t('settings.soundAlerts')}
                 </label>
                 <button
                   onClick={() => handleInputChange('soundEnabled', !tempSettings.soundEnabled)}
@@ -193,7 +226,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                 <label className={`font-medium ${
                   theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
-                  🔔 Desktop Notifications
+                  🔔 {t('settings.desktopNotifications')}
                 </label>
                 <button
                   onClick={() => handleInputChange('notificationsEnabled', !tempSettings.notificationsEnabled)}
@@ -223,7 +256,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                   : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
               }`}
             >
-              🔄 Reset
+              🔄 {t('settings.reset')}
             </button>
             <button
               onClick={handleSave}
@@ -233,7 +266,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                   : 'bg-blue-600 hover:bg-blue-700 text-white'
               }`}
             >
-              💾 Save Settings
+              💾 {t('settings.save')}
             </button>
           </div>
         </div>

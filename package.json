@@ -1,7 +1,7 @@
 {
   "name": "YuPomo",
   "private": true,
-  "version": "0.1.12",
+  "version": "0.1.13",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -18,7 +18,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "chart.js": "^4.4.0",
-    "react-chartjs-2": "^5.2.0"
+    "react-chartjs-2": "^5.2.0",
+    "i18next": "^23.10.1",
+    "react-i18next": "^13.2.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

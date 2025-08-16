@@ -1,6 +1,6 @@
 [package]
 name = "YuPomo"
-version = "0.1.12"
+version = "0.1.13"
 description = "Boost productivity, one cycle at a time."
 authors = ["you"]
 license = ""

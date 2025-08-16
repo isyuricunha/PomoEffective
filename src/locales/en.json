@@ -1,0 +1,58 @@
+{
+  "app": {
+    "title": "YuPomo"
+  },
+  "labels": {
+    "focus": "Focus Session",
+    "shortBreak": "Short Break",
+    "longBreak": "Long Break"
+  },
+  "timer": {
+    "completed": "{{label}} completed! {{next}}",
+    "next_break": "Time for a break!",
+    "next_focus": "Ready to focus?",
+    "session": "Session",
+    "today": "today",
+    "start": "Start",
+    "pause": "Pause",
+    "resume": "Resume",
+    "cancel": "Cancel",
+    "newCycle": "New Cycle"
+  },
+  "stats": {
+    "title": "Productivity Statistics",
+    "today": "Today's Sessions",
+    "thisWeek": "This Week",
+    "totalSessions": "Total Sessions",
+    "sessionDistribution": "Session Distribution",
+    "last7": "Last 7 Days",
+    "last30": "Last 30 Days",
+    "dailyWorkSessions": "Daily Work Sessions",
+    "dailyWorkTime": "Daily Work Time",
+    "insights": "Insights",
+    "avgDailySessions": "Average daily sessions:",
+    "totalFocusTime": "Total focus time:"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "timerDurations": "Timer Durations",
+    "workSession": "Work Session",
+    "shortBreak": "Short Break",
+    "longBreak": "Long Break",
+    "minutes": "min",
+    "notificationsAndSound": "Notifications & Sound",
+    "soundAlerts": "Sound Alerts",
+    "desktopNotifications": "Desktop Notifications",
+    "reset": "Reset",
+    "save": "Save Settings"
+  },
+  "period": {
+    "days7": "7 Days",
+    "days30": "30 Days"
+  },
+  "languages": {
+    "en": "English",
+    "pt-BR": "Português (Brasil)"
+  }
+}

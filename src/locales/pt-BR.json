@@ -1,0 +1,58 @@
+{
+  "app": {
+    "title": "YuPomo"
+  },
+  "labels": {
+    "focus": "Sessão de Foco",
+    "shortBreak": "Pausa Curta",
+    "longBreak": "Pausa Longa"
+  },
+  "timer": {
+    "completed": "{{label}} concluída! {{next}}",
+    "next_break": "Hora da pausa!",
+    "next_focus": "Pronto para focar?",
+    "session": "Sessão",
+    "today": "hoje",
+    "start": "Iniciar",
+    "pause": "Pausar",
+    "resume": "Retomar",
+    "cancel": "Cancelar",
+    "newCycle": "Novo Ciclo"
+  },
+  "stats": {
+    "title": "Estatísticas de Produtividade",
+    "today": "Sessões de Hoje",
+    "thisWeek": "Esta Semana",
+    "totalSessions": "Sessões Totais",
+    "sessionDistribution": "Distribuição de Sessões",
+    "last7": "Últimos 7 dias",
+    "last30": "Últimos 30 dias",
+    "dailyWorkSessions": "Sessões de Trabalho Diárias",
+    "dailyWorkTime": "Tempo de Trabalho Diário",
+    "insights": "Insights",
+    "avgDailySessions": "Média diária de sessões:",
+    "totalFocusTime": "Tempo total de foco:"
+  },
+  "settings": {
+    "title": "Configurações",
+    "language": "Idioma",
+    "timerDurations": "Duração dos Temporizadores",
+    "workSession": "Sessão de Trabalho",
+    "shortBreak": "Pausa Curta",
+    "longBreak": "Pausa Longa",
+    "minutes": "min",
+    "notificationsAndSound": "Notificações e Som",
+    "soundAlerts": "Alertas Sonoros",
+    "desktopNotifications": "Notificações na Área de Trabalho",
+    "reset": "Redefinir",
+    "save": "Salvar Configurações"
+  },
+  "period": {
+    "days7": "7 Dias",
+    "days30": "30 Dias"
+  },
+  "languages": {
+    "en": "English",
+    "pt-BR": "Português (Brasil)"
+  }
+}

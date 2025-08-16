@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useStatistics } from '../contexts/StatisticsContext'
 import { useTheme } from '../contexts/ThemeContext'
 import {
@@ -33,6 +34,7 @@ interface StatisticsProps {
 }
 
 const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
+  const { t, i18n } = useTranslation()
   const { getDailyStats, getTotalSessions, getTodaySessions, getWeeklyTotal } = useStatistics()
   const { theme } = useTheme()
   const [viewPeriod, setViewPeriod] = useState<'week' | 'month'>('week')
@@ -59,11 +61,11 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
   const barChartData = {
     labels: dailyStats.map(stat => {
       const date = new Date(stat.date)
-      return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+      return date.toLocaleDateString(i18n.language || undefined, { weekday: 'short', month: 'short', day: 'numeric' })
     }),
     datasets: [
       {
-        label: 'Work Sessions',
+        label: t('stats.dailyWorkSessions'),
         data: dailyStats.map(stat => stat.workSessions),
         backgroundColor: chartColors.background,
         borderColor: chartColors.primary,
@@ -77,11 +79,11 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
   const lineChartData = {
     labels: dailyStats.map(stat => {
       const date = new Date(stat.date)
-      return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+      return date.toLocaleDateString(i18n.language || undefined, { weekday: 'short', month: 'short', day: 'numeric' })
     }),
     datasets: [
       {
-        label: 'Work Time (minutes)',
+        label: t('stats.dailyWorkTime'),
         data: dailyStats.map(stat => stat.totalWorkTime),
         borderColor: chartColors.secondary,
         backgroundColor: chartColors.background,
@@ -97,7 +99,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
   const totalLongBreaks = dailyStats.reduce((sum, stat) => sum + stat.longBreaks, 0)
 
   const doughnutData = {
-    labels: ['Work Sessions', 'Short Breaks', 'Long Breaks'],
+    labels: [t('stats.dailyWorkSessions'), t('labels.shortBreak'), t('labels.longBreak')],
     datasets: [
       {
         data: [totalWorkSessions, totalShortBreaks, totalLongBreaks],
@@ -167,7 +169,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
           <h2 className={`text-xl font-semibold ${
             theme === 'dark' ? 'text-amber-400' : 'text-gray-800'
           }`}>
-            Productivity Statistics
+            {t('stats.title')}
           </h2>
           <button
             onClick={onClose}
@@ -195,7 +197,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
               <div className={`text-sm ${
                 theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
               }`}>
-                Today's Sessions
+                {t('stats.today')}
               </div>
             </div>
           </div>
@@ -212,7 +214,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
               <div className={`text-sm ${
                 theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
               }`}>
-                This Week
+                {t('stats.thisWeek')}
               </div>
             </div>
           </div>
@@ -229,7 +231,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
               <div className={`text-sm ${
                 theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
               }`}>
-                Total Sessions
+                {t('stats.totalSessions')}
               </div>
             </div>
           </div>
@@ -252,7 +254,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
                     : 'text-gray-600 hover:bg-gray-200'
               }`}
             >
-              7 Days
+              {t('period.days7')}
             </button>
             <button
               onClick={() => setViewPeriod('month')}
@@ -266,7 +268,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
                     : 'text-gray-600 hover:bg-gray-200'
               }`}
             >
-              30 Days
+              {t('period.days30')}
             </button>
           </div>
         </div>
@@ -280,7 +282,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
             <h3 className={`text-lg font-semibold mb-4 ${
               theme === 'dark' ? 'text-neutral-200' : 'text-gray-700'
             }`}>
-              Daily Work Sessions
+              {t('stats.dailyWorkSessions')}
             </h3>
             <div className="h-64">
               <Bar data={barChartData} options={chartOptions} />
@@ -294,7 +296,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
             <h3 className={`text-lg font-semibold mb-4 ${
               theme === 'dark' ? 'text-neutral-200' : 'text-gray-700'
             }`}>
-              Daily Work Time
+              {t('stats.dailyWorkTime')}
             </h3>
             <div className="h-64">
               <Line data={lineChartData} options={chartOptions} />
@@ -308,7 +310,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
             <h3 className={`text-lg font-semibold mb-4 text-center ${
               theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
             }`}>
-              Session Distribution ({viewPeriod === 'week' ? 'Last 7 Days' : 'Last 30 Days'})
+              {t('stats.sessionDistribution')} ({viewPeriod === 'week' ? t('stats.last7') : t('stats.last30')})
             </h3>
             <div className="h-64 flex justify-center">
               <div className="w-64">
@@ -325,21 +327,21 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
           <h3 className={`text-lg font-semibold mb-3 ${
             theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
           }`}>
-            📈 Insights
+            📈 {t('stats.insights')}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <p className={`text-sm ${
                 theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
               }`}>
-                <strong>Average daily sessions:</strong> {(totalWorkSessions / days).toFixed(1)}
+                <strong>{t('stats.avgDailySessions')}</strong> {(totalWorkSessions / days).toFixed(1)}
               </p>
             </div>
             <div>
               <p className={`text-sm ${
                 theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
               }`}>
-                <strong>Total focus time:</strong> {Math.floor(dailyStats.reduce((sum, stat) => sum + stat.totalWorkTime, 0) / 60)}h {dailyStats.reduce((sum, stat) => sum + stat.totalWorkTime, 0) % 60}m
+                <strong>{t('stats.totalFocusTime')}</strong> {Math.floor(dailyStats.reduce((sum, stat) => sum + stat.totalWorkTime, 0) / 60)}h {dailyStats.reduce((sum, stat) => sum + stat.totalWorkTime, 0) % 60}m
               </p>
             </div>
           </div>
