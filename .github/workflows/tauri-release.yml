@@ -51,6 +51,10 @@ jobs:
       - name: install frontend dependencies
         run: yarn install # change this to npm, pnpm or bun depending on which one you use.
 
+      # Generate platform-specific icons (ico, icns, pngs) so all files referenced in tauri.conf.json exist on CI
+      - name: generate tauri icons
+        run: npx @tauri-apps/cli icon src-tauri/icons/android-chrome-512x512.png
+
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
