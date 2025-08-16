@@ -111,7 +111,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-      <div className={`rounded-2xl shadow-2xl p-6 max-w-md w-full mx-4 transition-colors duration-300 ${
+      <div className={`rounded-2xl shadow-2xl p-4 sm:p-6 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto transition-colors duration-300 ${
         theme === 'dark'
           ? 'bg-neutral-950 border border-neutral-800'
           : 'bg-white border border-gray-200'
@@ -144,8 +144,8 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
             }`}>
               {t('settings.language')}
             </h3>
-            <div className="flex items-center justify-between">
-              <label className={`font-medium ${
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <label className={`font-medium min-w-0 ${
                 theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
               }`}>
                 🌐
@@ -184,8 +184,8 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
             
             <div className="space-y-4">
               {/* Work Duration */}
-              <div className="flex items-center justify-between">
-                <label className={`font-medium ${
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <label className={`font-medium min-w-0 ${
                   theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
                   🍅 {t('settings.workSession')}
@@ -212,8 +212,8 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               </div>
 
               {/* Short Break Duration */}
-              <div className="flex items-center justify-between">
-                <label className={`font-medium ${
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <label className={`font-medium min-w-0 ${
                   theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
                   ☕ {t('settings.shortBreak')}
@@ -240,8 +240,8 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               </div>
 
               {/* Long Break Duration */}
-              <div className="flex items-center justify-between">
-                <label className={`font-medium ${
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <label className={`font-medium min-w-0 ${
                   theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
                   🌟 {t('settings.longBreak')}
@@ -282,8 +282,8 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
 
             <div className="space-y-4">
               {/* Sound Toggle */}
-              <div className="flex items-center justify-between">
-                <label className={`font-medium ${
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <label className={`font-medium min-w-0 ${
                   theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
                   🔊 {t('settings.soundAlerts')}
@@ -307,7 +307,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               {/* Volume Slider */}
               {tempSettings.soundEnabled && (
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between gap-4">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
                     <label className={`${theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'} font-medium`}>🔈 {t('sound.volume')}</label>
                     <input
                       type="range"
@@ -316,7 +316,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                       step={0.01}
                       value={typeof tempSettings.soundVolume === 'number' ? tempSettings.soundVolume : 0.3}
                       onChange={(e) => handleInputChange('soundVolume', parseFloat(e.target.value))}
-                      className="w-40"
+                      className="w-full sm:w-40"
                     />
                   </div>
                 </div>
@@ -326,7 +326,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               {tempSettings.soundEnabled && (
                 <div className="mt-3 space-y-2">
                   <div className={`${theme === 'dark' ? 'text-neutral-400' : 'text-gray-600'} text-sm`}>{t('sound.quickPreview')}</div>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <button
                       type="button"
                       onClick={() => playNotificationSound({ volume: typeof tempSettings.soundVolume === 'number' ? tempSettings.soundVolume : 0.3, sourceUrl: '/sounds/start.mp3' })}
@@ -360,8 +360,8 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               )}
 
               {/* Notifications Toggle */}
-              <div className="flex items-center justify-between">
-                <label className={`font-medium ${
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <label className={`font-medium min-w-0 ${
                   theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'
                 }`}>
                   🔔 {t('settings.desktopNotifications')}
@@ -385,7 +385,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-3 pt-4">
+          <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <button
               onClick={handleReset}
               className={`flex-1 py-3 px-4 rounded-xl font-medium transition-colors ${
@@ -420,7 +420,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
             {t('updates.title')}
           </h3>
           <div className="space-y-3">
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
               <div className={`text-sm ${theme === 'dark' ? 'text-neutral-400' : 'text-gray-600'}`}>
                 {updateStatus || t('updates.manualPrompt')}
               </div>
@@ -439,7 +439,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
 
             {/* If we know latest via the hook, show quick actions */}
             {latest && compareSemver((typeof __APP_VERSION__ === 'string' ? __APP_VERSION__ : '0.0.0'), latest.latestVersion) < 0 && (
-              <div className="flex items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
                 <a
                   href={latest.htmlUrl}
                   target="_blank"
@@ -462,8 +462,8 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
             )}
 
             {/* Auto update toggle (Tauri only; harmless on web) */}
-            <div className="flex items-center justify-between">
-              <label className={`font-medium ${theme === 'dark' ? 'text-neutral-300' : 'text-gray-700'}`}>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <label className={`font-medium min-w-0 ${theme === 'dark' ? 'text-neutral-300' : 'text-gray-700'}`}>
                 ⚡ {t('updates.autoUpdateLabel')}
               </label>
               <button

@@ -138,7 +138,7 @@ const Timer = () => {
 
   return (
     <div className={`min-h-screen transition-colors duration-500 flex items-center justify-center p-4`}>
-      <div className={`rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full mx-4 transition-colors duration-500 ${
+      <div className={`rounded-3xl shadow-2xl p-6 sm:p-8 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto transition-colors duration-500 ${
         theme === 'dark'
           ? 'bg-neutral-950 border border-neutral-800'
           : 'bg-white border border-neutral-200'
