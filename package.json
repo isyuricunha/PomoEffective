@@ -12,6 +12,8 @@
     "build:win": "tauri build",
     "build:mac:intel": "tauri build --target x86_64-apple-darwin",
     "build:mac:arm": "tauri build --target aarch64-apple-darwin",
+    "version": "node scripts/sync-version.mjs && git add src-tauri/tauri.conf.json src-tauri/Cargo.toml",
+    "postversion": "git push origin HEAD --follow-tags",
     "build:linux": "tauri build --target x86_64-unknown-linux-gnu"
   },
   "dependencies": {

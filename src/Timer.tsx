@@ -4,6 +4,7 @@ import { useTheme } from './contexts/ThemeContext'
 import Settings from './components/Settings'
 import Statistics from './components/Statistics'
 import { usePomodoroTimer } from './hooks/usePomodoroTimer'
+import { useUpdateCheck } from './hooks/useUpdateCheck'
 
 export type TimerState = 'work' | 'shortBreak' | 'longBreak'
 export type TimerStatus = 'idle' | 'running' | 'paused'
@@ -72,6 +73,7 @@ const Timer = () => {
   const [showSettings, setShowSettings] = useState(false)
   const [showStatistics, setShowStatistics] = useState(false)
   const { theme, toggleTheme } = useTheme()
+  const { hasUpdate, latest } = useUpdateCheck()
 
   const {
     status,
@@ -102,6 +104,27 @@ const Timer = () => {
           toggleTheme={toggleTheme}
           theme={theme}
         />
+
+        {/* Update Banner */}
+        {hasUpdate && latest && (
+          <div className={`mb-4 flex items-center justify-between rounded-lg px-3 py-2 text-sm border ${
+            theme === 'dark'
+              ? 'bg-neutral-900 border-neutral-800 text-neutral-200'
+              : 'bg-amber-50 border-amber-200 text-neutral-800'
+          }`}>
+            <div>
+              <strong>Update available:</strong> v{latest.latestVersion} · Current v{__APP_VERSION__}
+            </div>
+            <a
+              href={latest.htmlUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${theme === 'dark' ? 'text-amber-400 hover:underline' : 'text-neutral-800 hover:underline'}`}
+            >
+              View release
+            </a>
+          </div>
+        )}
 
         {/* Main Content */}
         <div className="text-center select-none">
