@@ -75,15 +75,39 @@ export const usePomodoroTimer = () => {
     }
   }
 
-  const [state, dispatch] = useReducer(reducer, initialState)
+  // Lazy-init to avoid initial 00:00 flash by seeding with current settings
+  const [state, dispatch] = useReducer(
+    reducer,
+    initialState,
+    (s) => ({ ...s, timeLeft: settings.work * 60 })
+  )
   const tickRef = useRef<number | null>(null)
   const hasCompletedOnRestoreRef = useRef(false)
 
-  // Initialize defaults based on settings when idle
+  const parsePersisted = (input: unknown): Partial<TimerPersistedState> => {
+    if (typeof input !== 'object' || input === null) return {}
+    const o = input as Record<string, unknown>
+    const s = o.state
+    const st = o.status
+    const validState: TimerState | undefined = s === 'work' || s === 'shortBreak' || s === 'longBreak' ? s : undefined
+    const validStatus: TimerStatus | undefined = st === 'idle' || st === 'running' || st === 'paused' ? st : undefined
+    const endTime = typeof o.endTime === 'number' ? o.endTime : null
+    const timeLeft = typeof o.timeLeft === 'number' && o.timeLeft >= 0 ? o.timeLeft : undefined
+    const cycleCount = typeof o.cycleCount === 'number' && o.cycleCount >= 0 ? o.cycleCount : undefined
+    return {
+      state: validState,
+      status: validStatus,
+      endTime,
+      timeLeft,
+      cycleCount,
+    }
+  }
+
+  // Initialize defaults based on settings when idle (only if empty)
   useEffect(() => {
     if (state.status === 'idle') {
       const base = timerConfig[state.state]
-      if (state.timeLeft === 0 || state.timeLeft !== base) {
+      if (state.timeLeft === 0) {
         dispatch({ type: 'SET_TIMELEFT', payload: base })
       }
     }
@@ -104,23 +128,53 @@ export const usePomodoroTimer = () => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY)
       if (raw) {
-        const saved = JSON.parse(raw) as TimerPersistedState
+        const savedUnknown = JSON.parse(raw) as unknown
+        const savedPartial = parsePersisted(savedUnknown)
+        const saved: TimerPersistedState = {
+          ...initialState,
+          ...savedPartial,
+        }
         // Recompute timeLeft if running
         if (saved.status === 'running' && saved.endTime) {
           const diff = Math.max(0, Math.floor((saved.endTime - Date.now()) / 1000))
           saved.timeLeft = diff
           if (diff === 0) {
-            // trigger completion once after restoring
+            const overdueSec = Math.floor((Date.now() - saved.endTime) / 1000)
+            // If state is overly stale (e.g., reopened long after end), reset cleanly instead of auto-completing
+            if (overdueSec > 30) {
+              dispatch({ type: 'INIT', payload: {
+                state: 'work',
+                status: 'idle',
+                endTime: null,
+                timeLeft: timerConfig.work,
+                cycleCount: 0,
+              } })
+              return
+            }
+            // trigger completion once after restoring (freshly ended)
             hasCompletedOnRestoreRef.current = true
           }
         }
         dispatch({ type: 'INIT', payload: saved })
       } else {
-        // initialize timeLeft
-        dispatch({ type: 'SET_TIMELEFT', payload: timerConfig.work })
+        // initialize full default state cleanly for first-time users
+        dispatch({ type: 'INIT', payload: {
+          state: 'work',
+          status: 'idle',
+          endTime: null,
+          timeLeft: timerConfig.work,
+          cycleCount: 0,
+        } })
       }
     } catch {
-      dispatch({ type: 'SET_TIMELEFT', payload: timerConfig.work })
+      // on parse error, reset to clean defaults
+      dispatch({ type: 'INIT', payload: {
+        state: 'work',
+        status: 'idle',
+        endTime: null,
+        timeLeft: timerConfig.work,
+        cycleCount: 0,
+      } })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
