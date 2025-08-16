@@ -117,6 +117,93 @@ What happens under the hood:
 - The `version` script stages those files into the version commit.
 - `postversion` pushes the commit and tag to origin.
 
+## 🔄 Desktop Auto‑Update (Tauri)
+
+YuPomo supports desktop auto‑updates via Tauri Updater, with artifacts and `latest.json` published on GitHub Releases.
+
+### What’s already implemented
+
+- __Update check__: `src/hooks/useUpdateCheck.ts` calls GitHub’s API and shows a banner in the Home (`src/Timer.tsx`).
+- __UI actions__ (`src/components/Settings.tsx`):
+  - “Open latest release vX.Y.Z” link.
+  - “Download and install” button (uses `@tauri-apps/api/updater` when available; falls back to opening the release in the browser).
+  - “Auto update on startup (desktop)” toggle persisted to `localStorage` (`yupomo-auto-update`).
+- __Auto‑install on startup__ (`src/Timer.tsx`): if an update is available and the preference is enabled, it tries to install via the updater.
+
+### One‑time configuration
+
+1. __Generate Tauri signing keys__
+   - PowerShell in the project directory:
+     ```powershell
+     npx @tauri-apps/cli signer generate
+     ```
+   - Save the private key (.key) and its password; copy the public key string.
+
+2. __Add the public key to the app__
+   - In `src-tauri/tauri.conf.json` → `tauri.updater.pubkey`: paste your public key.
+
+3. __Configure GitHub Secrets for CI__
+   - Repo → Settings → Secrets and variables → Actions → New repository secret:
+     - `TAURI_PRIVATE_KEY`: contents of your .key file
+     - `TAURI_KEY_PASSWORD`: your key password
+   - Ensure the workflow `.github/workflows/tauri-release.yml` passes these secrets to `tauri-action` via `env`.
+
+4. __Verify endpoint and features__
+   - `src-tauri/tauri.conf.json`:
+     - `tauri.updater.active: true`
+     - `tauri.updater.endpoints: ["https://github.com/isyuricunha/YuPomo/releases/latest/download/latest.json"]`
+     - `tauri.updater.dialog: true`
+     - `tauri.updater.windows.installMode: "passive"`
+   - `src-tauri/Cargo.toml`: `tauri` has the `"updater"` feature enabled.
+
+### How to publish an update
+
+1. Commit your normal changes.
+2. Run the version bump (syncs Tauri files, creates commit, tag and pushes):
+   ```powershell
+   npm version patch -m "chore(release): v%s"
+   # or minor/major
+   ```
+3. GitHub Actions (workflow `tauri-release.yml`) will:
+   - Build and sign the binaries.
+   - Publish them to the Release and generate `latest.json`.
+
+### How to test auto‑update
+
+1. Install a previous version of the app.
+2. Open the app with internet access. In Settings → Updates, enable “Auto update on startup (desktop)” if desired.
+3. Publish a new release (steps above). On launch, the app should silently install the update; or click “Download and install”.
+
+### Relevant files
+
+- `src/hooks/useUpdateCheck.ts` — version check and daily throttling.
+- `src/utils/version.ts` — semver comparison and fetching the latest release.
+- `src/Timer.tsx` — banner with release link + auto‑install on startup.
+- `src/components/Settings.tsx` — update UI, link, install button and auto‑update toggle.
+- `src-tauri/Cargo.toml` — enables the `updater` feature.
+- `src-tauri/tauri.conf.json` — updater configuration (endpoints, pubkey, dialog).
+- `.github/workflows/tauri-release.yml` — builds, signs, and publishes artifacts and `latest.json`.
+
+### Notes
+
+- Tauri Updater signing verifies updates are legitimate; it is separate from OS code‑signing / notarization.
+- On Windows/macOS, the OS may show SmartScreen/Gatekeeper prompts for new installs. That is independent of the updater.
+
+### Release assets explained
+
+- __Manual installers__ (for users to download and install):
+  - Windows: `.exe`, `.msi`
+  - macOS: `.dmg`
+  - Linux: `.deb`, `.rpm`, raw `.AppImage`
+  - These do not require `.sig` files.
+
+- __Updater artifacts__ (used by in‑app auto‑update):
+  - Windows: `YuPomo_*_en-US.msi.zip`, `YuPomo_*_setup.nsis.zip`
+  - macOS: `YuPomo_*.app.tar.gz`
+  - Linux: `yu-pomo_*_amd64.AppImage.tar.gz`
+  - Each updater artifact has a companion `.sig` (minisign) file. The app uses your `pubkey` from `src-tauri/tauri.conf.json` to verify the artifact against the `.sig` before installing.
+  - `latest.json` points the updater to these files.
+
 ## 📦 Tech Stack
 
 - **Frontend**: React 18 + TypeScript + Vite
