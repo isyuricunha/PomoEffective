@@ -1,11 +1,11 @@
 [package]
-name = "pomodoro-app"
-version = "0.1.10"
-description = "A Tauri App"
+name = "YuPomo"
+version = "0.1.11"
+description = "Boost productivity, one cycle at a time."
 authors = ["you"]
 license = ""
 repository = ""
-default-run = "pomodoro-app"
+default-run = "YuPomo"
 edition = "2021"
 rust-version = "1.60"
 

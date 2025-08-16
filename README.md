@@ -46,7 +46,7 @@ Visit the hosted web app: [Coming Soon - Deploy Link]
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/YuPomo.git
-cd YuPomo/pomodoro-app
+cd YuPomo/YuPomo
 
 # Install dependencies
 npm install
