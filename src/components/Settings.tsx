@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSettings } from '../contexts/SettingsContext'
 import { useTheme } from '../contexts/ThemeContext'
 import { compareSemver, fetchLatestRelease } from '../utils/version'
 import { sendNotification, playNotificationSound } from '../utils/notifications'
+import { useUpdateCheck } from '../hooks/useUpdateCheck'
 
 interface SettingsProps {
   isOpen: boolean
@@ -18,6 +19,16 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
   const [lang, setLang] = useState<string>(() => (typeof window !== 'undefined' && (localStorage.getItem('lang') || i18n.language)) || 'en')
   const [checkingUpdate, setCheckingUpdate] = useState(false)
   const [updateStatus, setUpdateStatus] = useState<string>('')
+  const { latest } = useUpdateCheck()
+
+  // auto-update preference (Tauri only)
+  const [autoUpdateEnabled, setAutoUpdateEnabled] = useState<boolean>(() => {
+    try { return localStorage.getItem('yupomo-auto-update') !== 'false' } catch { return true }
+  })
+
+  useEffect(() => {
+    try { localStorage.setItem('yupomo-auto-update', String(autoUpdateEnabled)) } catch {/* ignore */}
+  }, [autoUpdateEnabled])
 
   if (!isOpen) return null
 
@@ -68,6 +79,27 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
       }
     } finally {
       setCheckingUpdate(false)
+    }
+  }
+
+  const handleInstallUpdate = async () => {
+    // Only works on Tauri when updater is configured; otherwise open the release page
+    try {
+      const { checkUpdate, installUpdate } = await import('@tauri-apps/api/updater')
+      const { open } = await import('@tauri-apps/api/shell')
+      const info = await checkUpdate()
+      if (info.shouldUpdate) {
+        await installUpdate()
+      } else if (latest?.htmlUrl) {
+        await open(latest.htmlUrl)
+      }
+    } catch {
+      // fallback: open latest release in default browser (web or tauri shell not available)
+      if (latest?.htmlUrl) {
+        try {
+          window.open(latest.htmlUrl, '_blank', 'noopener,noreferrer')
+        } catch {/* ignore */}
+      }
     }
   }
 
@@ -387,21 +419,68 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
           }`}>
             Updates
           </h3>
-          <div className="flex items-center justify-between gap-3">
-            <div className={`text-sm ${theme === 'dark' ? 'text-neutral-400' : 'text-gray-600'}`}>
-              {updateStatus || 'Manually check for a new version.'}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between gap-3">
+              <div className={`text-sm ${theme === 'dark' ? 'text-neutral-400' : 'text-gray-600'}`}>
+                {updateStatus || 'Manually check for a new version.'}
+              </div>
+              <button
+                onClick={handleCheckUpdates}
+                disabled={checkingUpdate}
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  theme === 'dark'
+                    ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800'
+                    : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
+                } ${checkingUpdate ? 'opacity-60 cursor-not-allowed' : ''}`}
+              >
+                {checkingUpdate ? 'Checking' : 'Check for updates now'}
+              </button>
             </div>
-            <button
-              onClick={handleCheckUpdates}
-              disabled={checkingUpdate}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                theme === 'dark'
-                  ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800'
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
-              } ${checkingUpdate ? 'opacity-60 cursor-not-allowed' : ''}`}
-            >
-              {checkingUpdate ? 'Checking' : 'Check for updates now'}
-            </button>
+
+            {/* If we know latest via the hook, show quick actions */}
+            {latest && compareSemver((typeof __APP_VERSION__ === 'string' ? __APP_VERSION__ : '0.0.0'), latest.latestVersion) < 0 && (
+              <div className="flex items-center justify-between gap-3">
+                <a
+                  href={latest.htmlUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${theme === 'dark' ? 'text-amber-400 hover:underline' : 'text-blue-600 hover:underline'} text-sm`}
+                >
+                  Open latest release v{latest.latestVersion}
+                </a>
+                <button
+                  onClick={handleInstallUpdate}
+                  className={`px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                    theme === 'dark'
+                      ? 'bg-amber-500 hover:bg-amber-400 text-black'
+                      : 'bg-blue-600 hover:bg-blue-700 text-white'
+                  }`}
+                >
+                  Download and install
+                </button>
+              </div>
+            )}
+
+            {/* Auto update toggle (Tauri only; harmless on web) */}
+            <div className="flex items-center justify-between">
+              <label className={`font-medium ${theme === 'dark' ? 'text-neutral-300' : 'text-gray-700'}`}>
+                ⚡ Auto update on startup (desktop)
+              </label>
+              <button
+                onClick={() => setAutoUpdateEnabled(v => !v)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  autoUpdateEnabled
+                    ? theme === 'dark' ? 'bg-amber-500' : 'bg-blue-600'
+                    : theme === 'dark' ? 'bg-neutral-700' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    autoUpdateEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>

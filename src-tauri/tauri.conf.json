@@ -30,6 +30,17 @@
         ]
       }
     },
+    "updater": {
+      "active": true,
+      "endpoints": [
+        "https://github.com/isyuricunha/YuPomo/releases/latest/download/latest.json"
+      ],
+      "dialog": true,
+      "windows": {
+        "installMode": "passive"
+      },
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDgwQjIzMjBDODUwNkMyN0YKUldSL3dnYUZEREt5Z01pbVo2U1phdFczWThkd3A0ZkhZVk1jaktDbWQxWWEzeUM0czJYTGJnMkcK"
+    },
     "bundle": {
       "active": true,
       "targets": "all",

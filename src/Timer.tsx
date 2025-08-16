@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from './contexts/ThemeContext'
 import Settings from './components/Settings'
@@ -111,6 +111,29 @@ const Timer = () => {
     label,
     todaySessions,
   } = usePomodoroTimer()
+
+  // Auto-update on startup (desktop/Tauri only)
+  useEffect(() => {
+    const pref = (() => {
+      try { return localStorage.getItem('yupomo-auto-update') !== 'false' } catch { return true }
+    })()
+    if (!pref || !hasUpdate || !latest) return
+
+    let cancelled = false
+    ;(async () => {
+      try {
+        const { checkUpdate, installUpdate } = await import('@tauri-apps/api/updater')
+        const info = await checkUpdate()
+        if (!cancelled && info.shouldUpdate) {
+          await installUpdate()
+        }
+      } catch {
+        // Updater not available or running on web: no-op
+      }
+    })()
+
+    return () => { cancelled = true }
+  }, [hasUpdate, latest])
 
   return (
     <div className={`min-h-screen transition-colors duration-500 flex items-center justify-center p-4`}>
