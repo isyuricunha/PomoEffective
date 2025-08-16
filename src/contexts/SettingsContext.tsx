@@ -5,6 +5,8 @@ export interface TimerSettings {
   shortBreak: number // in minutes
   longBreak: number // in minutes
   soundEnabled: boolean
+  soundVolume?: number // 0..1
+  soundName?: string // 'beep' for oscillator or filename under /sounds
   notificationsEnabled: boolean
 }
 
@@ -13,6 +15,8 @@ const DEFAULT_SETTINGS: TimerSettings = {
   shortBreak: 5,
   longBreak: 15,
   soundEnabled: true,
+  soundVolume: 0.3,
+  soundName: 'beep',
   notificationsEnabled: true,
 }
 
@@ -60,6 +64,8 @@ const toPartialTimerSettings = (input: unknown): Partial<TimerSettings> => {
     shortBreak: typeof obj.shortBreak === 'number' ? obj.shortBreak : undefined,
     longBreak: typeof obj.longBreak === 'number' ? obj.longBreak : undefined,
     soundEnabled: typeof obj.soundEnabled === 'boolean' ? obj.soundEnabled : undefined,
+    soundVolume: typeof obj.soundVolume === 'number' ? obj.soundVolume : undefined,
+    soundName: typeof obj.soundName === 'string' ? obj.soundName : undefined,
     notificationsEnabled: typeof obj.notificationsEnabled === 'boolean' ? obj.notificationsEnabled : undefined,
   }
 }

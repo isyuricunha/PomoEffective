@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useSettings } from '../contexts/SettingsContext'
 import { useTheme } from '../contexts/ThemeContext'
 import { compareSemver, fetchLatestRelease } from '../utils/version'
-import { sendNotification } from '../utils/notifications'
+import { sendNotification, playNotificationSound } from '../utils/notifications'
 
 interface SettingsProps {
   isOpen: boolean
@@ -40,6 +40,8 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
       shortBreak: 5,
       longBreak: 15,
       soundEnabled: true,
+      soundVolume: 0.3,
+      soundName: 'beep',
       notificationsEnabled: true,
     })
   }
@@ -69,9 +71,11 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
     }
   }
 
-  const handleInputChange = (field: keyof typeof tempSettings, value: number | boolean) => {
+  const handleInputChange = (field: keyof typeof tempSettings, value: number | boolean | string | undefined) => {
     setTempSettings(prev => ({ ...prev, [field]: value }))
   }
+
+  // no upload support; sounds should be placed under /sounds and referenced by filename
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
@@ -233,6 +237,9 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
             </div>
           </div>
 
+          {/* Divider */}
+          <div className={`${theme === 'dark' ? 'border-neutral-800' : 'border-gray-200'} border-t my-4`} />
+
           {/* Notification Settings */}
           <div>
             <h3 className={`text-sm font-medium mb-4 ${
@@ -240,7 +247,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
             }`}>
               {t('settings.notificationsAndSound')}
             </h3>
-            
+
             <div className="space-y-4">
               {/* Sound Toggle */}
               <div className="flex items-center justify-between">
@@ -264,6 +271,61 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                   />
                 </button>
               </div>
+
+              {/* Volume Slider */}
+              {tempSettings.soundEnabled && (
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between gap-4">
+                    <label className={`${theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'} font-medium`}>🔈 Volume</label>
+                    <input
+                      type="range"
+                      min={0}
+                      max={1}
+                      step={0.01}
+                      value={typeof tempSettings.soundVolume === 'number' ? tempSettings.soundVolume : 0.3}
+                      onChange={(e) => handleInputChange('soundVolume', parseFloat(e.target.value))}
+                      className="w-40"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Quick preview of default sounds */}
+              {tempSettings.soundEnabled && (
+                <div className="mt-3 space-y-2">
+                  <div className={`${theme === 'dark' ? 'text-neutral-400' : 'text-gray-600'} text-sm`}>Quick preview</div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => playNotificationSound({ volume: typeof tempSettings.soundVolume === 'number' ? tempSettings.soundVolume : 0.3, sourceUrl: '/sounds/start.mp3' })}
+                      className={`${theme === 'dark' ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800' : 'bg-gray-100 hover:bg-gray-200 text-gray-800'} px-3 py-2 rounded-lg text-sm text-left`}
+                    >
+                      ▶️ Start
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => playNotificationSound({ volume: typeof tempSettings.soundVolume === 'number' ? tempSettings.soundVolume : 0.3, sourceUrl: '/sounds/pause.mp3' })}
+                      className={`${theme === 'dark' ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800' : 'bg-gray-100 hover:bg-gray-200 text-gray-800'} px-3 py-2 rounded-lg text-sm text-left`}
+                    >
+                      ⏸️ Pause
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => playNotificationSound({ volume: typeof tempSettings.soundVolume === 'number' ? tempSettings.soundVolume : 0.3, sourceUrl: '/sounds/break.mp3' })}
+                      className={`${theme === 'dark' ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800' : 'bg-gray-100 hover:bg-gray-200 text-gray-800'} px-3 py-2 rounded-lg text-sm text-left`}
+                    >
+                      🧘 Start Break
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => playNotificationSound({ volume: typeof tempSettings.soundVolume === 'number' ? tempSettings.soundVolume : 0.3, sourceUrl: '/sounds/end-break.mp3' })}
+                      className={`${theme === 'dark' ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800' : 'bg-gray-100 hover:bg-gray-200 text-gray-800'} px-3 py-2 rounded-lg text-sm text-left`}
+                    >
+                      ✅ End Break
+                    </button>
+                  </div>
+                </div>
+              )}
 
               {/* Notifications Toggle */}
               <div className="flex items-center justify-between">
@@ -315,6 +377,9 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
           </div>
         </div>
 
+        {/* Divider */}
+        <div className={`${theme === 'dark' ? 'border-neutral-800' : 'border-gray-200'} border-t my-4`} />
+
         {/* Updates */}
         <div>
           <h3 className={`text-sm font-medium mb-4 ${
@@ -335,7 +400,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                   : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
               } ${checkingUpdate ? 'opacity-60 cursor-not-allowed' : ''}`}
             >
-              {checkingUpdate ? 'Checking…' : 'Check for updates now'}
+              {checkingUpdate ? 'Checking' : 'Check for updates now'}
             </button>
           </div>
         </div>

@@ -57,37 +57,62 @@ export const sendNotification = async (options: NotificationOptions): Promise<vo
 }
 
 // Play notification sound
-export const playNotificationSound = (): void => {
+export interface PlaySoundOptions {
+  volume?: number // 0..1
+  sourceUrl?: string // if provided, play this file instead of the beep
+}
+
+export const playNotificationSound = (options?: PlaySoundOptions): void => {
   try {
-    // Create a simple beep sound using Web Audio API with a typed fallback
-    const AudioCtor =
-      typeof window !== 'undefined' && 'AudioContext' in window
-        ? window.AudioContext
-        : (typeof window !== 'undefined' && 'webkitAudioContext' in window
-            ? (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
-            : undefined)
-    if (!AudioCtor) {
+    // If a custom source URL is provided, play it via HTMLAudio for maximum compatibility
+    if (options?.sourceUrl) {
+      const audio = new Audio(options.sourceUrl)
+      audio.volume = Math.min(1, Math.max(0, options.volume ?? 0.3))
+      void audio.play().catch(() => { /* ignore */ })
       return
     }
-    const audioContext = new AudioCtor()
-    
+
+    // Reuse a single AudioContext and try to resume if suspended
+    const getAudioContext = (): AudioContext | undefined => {
+      const w = window as unknown as {
+        AudioContext?: typeof AudioContext
+        webkitAudioContext?: typeof AudioContext
+        __yupomoAudioCtx?: AudioContext
+      }
+      const Ctor = w.AudioContext ?? w.webkitAudioContext
+      if (!Ctor) return undefined
+      if (!w.__yupomoAudioCtx) {
+        try { w.__yupomoAudioCtx = new Ctor() } catch { return undefined }
+      }
+      return w.__yupomoAudioCtx
+    }
+
+    const ctx = getAudioContext()
+    if (!ctx) return
+
+    // Best-effort resume (autoplay policy)
+    if (typeof ctx.resume === 'function' && ctx.state === 'suspended') {
+      void ctx.resume().catch(() => { /* ignore */ })
+    }
+
     // Create oscillator for beep sound
-    const oscillator = audioContext.createOscillator()
-    const gainNode = audioContext.createGain()
-    
+    const oscillator = ctx.createOscillator()
+    const gainNode = ctx.createGain()
+
     oscillator.connect(gainNode)
-    gainNode.connect(audioContext.destination)
-    
+    gainNode.connect(ctx.destination)
+
     // Configure sound
-    oscillator.frequency.setValueAtTime(800, audioContext.currentTime) // 800Hz frequency
-    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime) // 30% volume
-    
+    oscillator.frequency.setValueAtTime(800, ctx.currentTime) // 800Hz frequency
+    const vol = Math.min(1, Math.max(0, options?.volume ?? 0.3))
+    gainNode.gain.setValueAtTime(vol, ctx.currentTime)
+
     // Play for 200ms
-    oscillator.start(audioContext.currentTime)
-    oscillator.stop(audioContext.currentTime + 0.2)
-    
+    oscillator.start(ctx.currentTime)
+    oscillator.stop(ctx.currentTime + 0.2)
+
     // Fade out
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2)
+    gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2)
   } catch (error) {
     console.warn('Failed to play notification sound:', error)
   }

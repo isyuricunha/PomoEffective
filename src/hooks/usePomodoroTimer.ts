@@ -45,6 +45,40 @@ export const usePomodoroTimer = () => {
   const { settings } = useSettings()
   const { addSession, getTodaySessions } = useStatistics()
 
+  const playEventSound = (event: 'start' | 'pause' | 'workToBreak' | 'breakToWork' | 'newCycle' | 'cancel' | 'complete') => {
+    if (!settings.soundEnabled) return
+    const volume = settings.soundVolume ?? 0.3
+    let file: string | undefined
+    switch (event) {
+      case 'start':
+        file = '/sounds/start.mp3'
+        break
+      case 'pause':
+        file = '/sounds/pause.mp3'
+        break
+      case 'workToBreak':
+        file = '/sounds/break.mp3'
+        break
+      case 'breakToWork':
+        file = '/sounds/end-break.mp3'
+        break
+      case 'newCycle':
+        file = '/sounds/new-cycle.mp3'
+        break
+      case 'cancel':
+        file = '/sounds/cancel.mp3'
+        break
+      case 'complete':
+        file = '/sounds/complete.mp3'
+        break
+    }
+    try {
+      playNotificationSound({ volume, sourceUrl: file })
+    } catch {
+      // ignore
+    }
+  }
+
   const timerConfig: TimerConfig = useMemo(
     () => ({
       work: settings.work * 60,
@@ -216,6 +250,8 @@ export const usePomodoroTimer = () => {
     const end = Date.now() + state.timeLeft * 1000
     dispatch({ type: 'SET_ENDTIME', payload: end })
     dispatch({ type: 'SET_STATUS', payload: 'running' })
+    // start sound
+    playEventSound('start')
   }
 
   const pause = () => {
@@ -224,12 +260,16 @@ export const usePomodoroTimer = () => {
     dispatch({ type: 'SET_STATUS', payload: 'paused' })
     dispatch({ type: 'SET_ENDTIME', payload: null })
     dispatch({ type: 'SET_TIMELEFT', payload: remaining })
+    // pause sound
+    playEventSound('pause')
   }
 
   const resetTimer = () => {
     dispatch({ type: 'SET_STATUS', payload: 'idle' })
     dispatch({ type: 'SET_ENDTIME', payload: null })
     dispatch({ type: 'SET_TIMELEFT', payload: timerConfig[state.state] })
+    // cancel sound
+    playEventSound('cancel')
   }
 
   const resetCycle = () => {
@@ -238,6 +278,8 @@ export const usePomodoroTimer = () => {
     dispatch({ type: 'SET_ENDTIME', payload: null })
     dispatch({ type: 'RESET_CYCLE' })
     dispatch({ type: 'SET_TIMELEFT', payload: timerConfig.work })
+    // cancel sound
+    playEventSound('cancel')
   }
 
   const nextState = (current: TimerState, nextCycleCount: number): TimerState => {
@@ -266,19 +308,31 @@ export const usePomodoroTimer = () => {
         // best-effort notification; ignore failures
       }
     }
-    if (settings.soundEnabled) {
-      try { playNotificationSound() } catch {
-        // best-effort sound; ignore failures
-      }
+    // Determine next state and play appropriate sound
+    // Always play completion sound first
+    playEventSound('complete')
+    let nextCycle = state.cycleCount
+    if (state.state === 'work') {
+      nextCycle = state.cycleCount + 1
+    }
+    const ns = nextState(state.state, nextCycle)
+    // If starting a long break (every 4th work completion), use new-cycle
+    if (state.state === 'work' && ns === 'longBreak') {
+      playEventSound('newCycle')
+    } else if (state.state === 'work') {
+      playEventSound('workToBreak')
+    } else {
+      playEventSound('breakToWork')
     }
 
     // transition
-    let nextCycle = state.cycleCount
+    // transition
+    nextCycle = state.cycleCount
     if (state.state === 'work') {
       nextCycle = state.cycleCount + 1
       dispatch({ type: 'INC_CYCLE' })
     }
-    const ns = nextState(state.state, nextCycle)
+    // ns already computed above
     dispatch({ type: 'SET_STATUS', payload: 'idle' })
     dispatch({ type: 'SET_ENDTIME', payload: null })
     dispatch({ type: 'SET_STATE', payload: ns })
