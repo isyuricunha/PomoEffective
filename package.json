@@ -8,7 +8,11 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "build:win": "tauri build",
+    "build:mac:intel": "tauri build --target x86_64-apple-darwin",
+    "build:mac:arm": "tauri build --target aarch64-apple-darwin",
+    "build:linux": "tauri build --target x86_64-unknown-linux-gnu"
   },
   "dependencies": {
     "react": "^18.2.0",
