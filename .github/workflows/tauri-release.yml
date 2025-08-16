@@ -42,6 +42,24 @@ jobs:
       - name: Install Tauri CLI
         run: npm i -g @tauri-apps/cli
 
+      - name: Install Linux build dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libgtk-3-dev \
+            libwebkit2gtk-4.1-dev \
+            libayatana-appindicator3-dev \
+            librsvg2-dev \
+            patchelf \
+            pkg-config \
+            build-essential \
+            curl \
+            file \
+            gcc \
+            g++ \
+            make
+
       - name: Generate platform icons (if missing)
         shell: bash
         run: |
