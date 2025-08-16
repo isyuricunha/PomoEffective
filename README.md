@@ -16,6 +16,7 @@ A beautiful, minimalist Pomodoro timer built with React, TypeScript, Vite, and T
 - **🔊 Sound Alerts**: Audio feedback for session transitions
 - **💾 Data Persistence**: Settings and statistics saved locally
 - **📱 Responsive Design**: Works perfectly on desktop and mobile
+ - **🌍 Localization (i18n)**: Full multi-language support with runtime language switch
 
 ## 🚀 Quick Start
 
@@ -89,6 +90,33 @@ npm run tauri build
 - **Desktop**: Tauri (Rust backend)
 - **Storage**: localStorage (web) + Tauri filesystem (desktop)
 - **Notifications**: Web Notification API + Tauri notifications
+ - **i18n**: i18next + react-i18next
+
+## 🌍 Localization
+
+YuPomo supports multiple languages and can switch instantly at runtime. Your preference is saved and restored across sessions.
+
+Supported languages:
+
+- English (en)
+- Português (Brasil) (pt-BR)
+- Español (es)
+- Français (fr)
+- Deutsch (de)
+- Italiano (it)
+- Русский (ru)
+- 日本語 (ja)
+- 简体中文 (zh-CN)
+- 한국어 (ko)
+- العربية (ar)
+- עברית (he)
+- فارسی (fa)
+- हिंदी (hi)
+- Türkçe (tr)
+
+How to change the language:
+
+- Open Settings → Language → choose your language → Save Settings.
 
 ## 🎨 Screenshots
 

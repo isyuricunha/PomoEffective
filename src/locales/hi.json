@@ -1,0 +1,52 @@
+{
+  "app": { "title": "YuPomo" },
+  "labels": { "focus": "ध्यान सत्र", "shortBreak": "छोटा ब्रेक", "longBreak": "लंबा ब्रेक" },
+  "timer": {
+    "completed": "{{label}} पूर्ण! {{next}}",
+    "next_break": "ब्रेक का समय!",
+    "next_focus": "ध्यान के लिए तैयार?",
+    "session": "सत्र",
+    "today": "आज",
+    "start": "शुरू",
+    "pause": "रोकें",
+    "resume": "जारी रखें",
+    "cancel": "रद्द करें",
+    "newCycle": "नया चक्र"
+  },
+  "stats": {
+    "title": "उत्पादकता आँकड़े",
+    "today": "आज के सत्र",
+    "thisWeek": "इस सप्ताह",
+    "totalSessions": "कुल सत्र",
+    "sessionDistribution": "सत्र वितरण",
+    "last7": "पिछले 7 दिन",
+    "last30": "पिछले 30 दिन",
+    "dailyWorkSessions": "दैनिक कार्य सत्र",
+    "dailyWorkTime": "दैनिक कार्य समय",
+    "insights": "झलकियाँ",
+    "avgDailySessions": "औसत दैनिक सत्र:",
+    "totalFocusTime": "कुल ध्यान समय:"
+  },
+  "settings": {
+    "title": "सेटिंग्स",
+    "language": "भाषा",
+    "timerDurations": "टाइमर अवधि",
+    "workSession": "कार्य सत्र",
+    "shortBreak": "छोटा ब्रेक",
+    "longBreak": "लंबा ब्रेक",
+    "minutes": "मिन",
+    "notificationsAndSound": "सूचनाएँ और ध्वनि",
+    "soundAlerts": "ध्वनि अलर्ट",
+    "desktopNotifications": "डेस्कटॉप सूचनाएँ",
+    "reset": "रीसेट",
+    "save": "सेटिंग्स सहेजें"
+  },
+  "period": { "days7": "7 दिन", "days30": "30 दिन" },
+  "languages": {
+    "en": "English", "pt-BR": "Português (Brasil)", "es": "Español", "fr": "Français", "de": "Deutsch",
+    "it": "Italiano", "ru": "Русский", "ja": "日本語", "zh-CN": "简体中文", "ko": "한국어",
+    "ar": "العربية", "he": "עברית", "fa": "فارسی", "hi": "हिंदी", "tr": "Türkçe", "pl": "Polski",
+    "nl": "Nederlands", "sv": "Svenska", "uk": "Українська", "th": "ไทย", "vi": "Tiếng Việt", "id": "Indonesia",
+    "ms": "Bahasa Melayu", "ro": "Română", "hu": "Magyar", "cs": "Čeština", "el": "Ελληνικά"
+  }
+}

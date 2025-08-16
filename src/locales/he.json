@@ -1,0 +1,52 @@
+{
+  "app": { "title": "YuPomo" },
+  "labels": { "focus": "מושב התמקדות", "shortBreak": "הפסקה קצרה", "longBreak": "הפסקה ארוכה" },
+  "timer": {
+    "completed": "{{label}} הושלם! {{next}}",
+    "next_break": "זמן להפסקה!",
+    "next_focus": "מוכן להתמקד?",
+    "session": "מושב",
+    "today": "היום",
+    "start": "התחל",
+    "pause": "השהה",
+    "resume": "המשך",
+    "cancel": "בטל",
+    "newCycle": "מחזור חדש"
+  },
+  "stats": {
+    "title": "סטטיסטיקת פרודוקטיביות",
+    "today": "המושבים של היום",
+    "thisWeek": "השבוע",
+    "totalSessions": "סה״כ מושבים",
+    "sessionDistribution": "פיזור מושבים",
+    "last7": "7 הימים האחרונים",
+    "last30": "30 הימים האחרונים",
+    "dailyWorkSessions": "מושבי עבודה יומיים",
+    "dailyWorkTime": "זמן עבודה יומי",
+    "insights": "תובנות",
+    "avgDailySessions": "ממוצע מושבים יומי:",
+    "totalFocusTime": "סה״כ זמן התמקדות:"
+  },
+  "settings": {
+    "title": "הגדרות",
+    "language": "שפה",
+    "timerDurations": "משך הטיימר",
+    "workSession": "מושב עבודה",
+    "shortBreak": "הפסקה קצרה",
+    "longBreak": "הפסקה ארוכה",
+    "minutes": "דק",
+    "notificationsAndSound": "התראות וסאונד",
+    "soundAlerts": "התראות קוליות",
+    "desktopNotifications": "התראות שולחן עבודה",
+    "reset": "איפוס",
+    "save": "שמירת הגדרות"
+  },
+  "period": { "days7": "7 ימים", "days30": "30 ימים" },
+  "languages": {
+    "en": "English", "pt-BR": "Português (Brasil)", "es": "Español", "fr": "Français", "de": "Deutsch",
+    "it": "Italiano", "ru": "Русский", "ja": "日本語", "zh-CN": "简体中文", "ko": "한국어",
+    "ar": "العربية", "he": "עברית", "fa": "فارسی", "hi": "हिंदी", "tr": "Türkçe", "pl": "Polski",
+    "nl": "Nederlands", "sv": "Svenska", "uk": "Українська", "th": "ไทย", "vi": "Tiếng Việt", "id": "Indonesia",
+    "ms": "Bahasa Melayu", "ro": "Română", "hu": "Magyar", "cs": "Čeština", "el": "Ελληνικά"
+  }
+}

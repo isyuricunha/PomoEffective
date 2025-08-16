@@ -1,0 +1,52 @@
+{
+  "app": { "title": "یوپومو" },
+  "labels": { "focus": "جلسه تمرکز", "shortBreak": "استراحت کوتاه", "longBreak": "استراحت بلند" },
+  "timer": {
+    "completed": "{{label}} تکمیل شد! {{next}}",
+    "next_break": "وقت استراحته!",
+    "next_focus": "آماده برای تمرکز؟",
+    "session": "جلسه",
+    "today": "امروز",
+    "start": "شروع",
+    "pause": "مکث",
+    "resume": "ادامه",
+    "cancel": "لغو",
+    "newCycle": "چرخه جدید"
+  },
+  "stats": {
+    "title": "آمار بهره‌وری",
+    "today": "جلسات امروز",
+    "thisWeek": "این هفته",
+    "totalSessions": "کل جلسات",
+    "sessionDistribution": "توزیع جلسات",
+    "last7": "7 روز گذشته",
+    "last30": "30 روز گذشته",
+    "dailyWorkSessions": "جلسات کاری روزانه",
+    "dailyWorkTime": "زمان کار روزانه",
+    "insights": "نکات",
+    "avgDailySessions": "میانگین جلسات روزانه:",
+    "totalFocusTime": "کل زمان تمرکز:"
+  },
+  "settings": {
+    "title": "تنظیمات",
+    "language": "زبان",
+    "timerDurations": "مدت‌زمان تایمر",
+    "workSession": "جلسه کاری",
+    "shortBreak": "استراحت کوتاه",
+    "longBreak": "استراحت بلند",
+    "minutes": "دقیقه",
+    "notificationsAndSound": "اعلان‌ها و صدا",
+    "soundAlerts": "هشدارهای صوتی",
+    "desktopNotifications": "اعلان‌های دسکتاپ",
+    "reset": "بازنشانی",
+    "save": "ذخیره تنظیمات"
+  },
+  "period": { "days7": "۷ روز", "days30": "۳۰ روز" },
+  "languages": {
+    "en": "English", "pt-BR": "Português (Brasil)", "es": "Español", "fr": "Français", "de": "Deutsch",
+    "it": "Italiano", "ru": "Русский", "ja": "日本語", "zh-CN": "简体中文", "ko": "한국어",
+    "ar": "العربية", "he": "עברית", "fa": "فارسی", "hi": "हिंदी", "tr": "Türkçe", "pl": "Polski",
+    "nl": "Nederlands", "sv": "Svenska", "uk": "Українська", "th": "ไทย", "vi": "Tiếng Việt", "id": "Indonesia",
+    "ms": "Bahasa Melayu", "ro": "Română", "hu": "Magyar", "cs": "Čeština", "el": "Ελληνικά"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "app": { "title": "يوبومو" },
+  "labels": { "focus": "جلسة تركيز", "shortBreak": "استراحة قصيرة", "longBreak": "استراحة طويلة" },
+  "timer": {
+    "completed": "اكتملت {{label}}! {{next}}",
+    "next_break": "حان وقت الاستراحة!",
+    "next_focus": "مستعد للتركيز؟",
+    "session": "جلسة",
+    "today": "اليوم",
+    "start": "ابدأ",
+    "pause": "إيقاف مؤقت",
+    "resume": "استئناف",
+    "cancel": "إلغاء",
+    "newCycle": "دورة جديدة"
+  },
+  "stats": {
+    "title": "إحصائيات الإنتاجية",
+    "today": "جلسات اليوم",
+    "thisWeek": "هذا الأسبوع",
+    "totalSessions": "إجمالي الجلسات",
+    "sessionDistribution": "توزيع الجلسات",
+    "last7": "آخر 7 أيام",
+    "last30": "آخر 30 يومًا",
+    "dailyWorkSessions": "جلسات العمل اليومية",
+    "dailyWorkTime": "وقت العمل اليومي",
+    "insights": "رؤى",
+    "avgDailySessions": "متوسط الجلسات اليومية:",
+    "totalFocusTime": "إجمالي وقت التركيز:"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "timerDurations": "مدة المؤقت",
+    "workSession": "جلسة عمل",
+    "shortBreak": "استراحة قصيرة",
+    "longBreak": "استراحة طويلة",
+    "minutes": "د",
+    "notificationsAndSound": "الإشعارات والصوت",
+    "soundAlerts": "تنبيهات صوتية",
+    "desktopNotifications": "إشعارات سطح المكتب",
+    "reset": "إعادة تعيين",
+    "save": "حفظ الإعدادات"
+  },
+  "period": { "days7": "7 أيام", "days30": "30 يومًا" },
+  "languages": {
+    "en": "English", "pt-BR": "Português (Brasil)", "es": "Español", "fr": "Français", "de": "Deutsch",
+    "it": "Italiano", "ru": "Русский", "ja": "日本語", "zh-CN": "简体中文", "ko": "한국어",
+    "ar": "العربية", "he": "עברית", "fa": "فارسی", "hi": "हिंदी", "tr": "Türkçe", "pl": "Polski",
+    "nl": "Nederlands", "sv": "Svenska", "no": "Norsk", "da": "Dansk", "fi": "Suomi", "cs": "Čeština",
+    "uk": "Українська", "el": "Ελληνικά", "th": "ไทย", "vi": "Tiếng Việt", "id": "Indonesia", "ms": "Bahasa Melayu",
+    "ro": "Română", "hu": "Magyar", "sk": "Slovenčina"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "app": { "title": "YuPomo" },
+  "labels": { "focus": "집중 세션", "shortBreak": "짧은 휴식", "longBreak": "긴 휴식" },
+  "timer": {
+    "completed": "{{label}} 완료! {{next}}",
+    "next_break": "휴식 시간입니다!",
+    "next_focus": "집중할 준비되셨나요?",
+    "session": "세션",
+    "today": "오늘",
+    "start": "시작",
+    "pause": "일시정지",
+    "resume": "재개",
+    "cancel": "취소",
+    "newCycle": "새 사이클"
+  },
+  "stats": {
+    "title": "생산성 통계",
+    "today": "오늘의 세션",
+    "thisWeek": "이번 주",
+    "totalSessions": "총 세션",
+    "sessionDistribution": "세션 분포",
+    "last7": "최근 7일",
+    "last30": "최근 30일",
+    "dailyWorkSessions": "일일 작업 세션",
+    "dailyWorkTime": "일일 작업 시간",
+    "insights": "인사이트",
+    "avgDailySessions": "일 평균 세션:",
+    "totalFocusTime": "총 집중 시간:"
+  },
+  "settings": {
+    "title": "설정",
+    "language": "언어",
+    "timerDurations": "타이머 시간",
+    "workSession": "작업 세션",
+    "shortBreak": "짧은 휴식",
+    "longBreak": "긴 휴식",
+    "minutes": "분",
+    "notificationsAndSound": "알림 및 사운드",
+    "soundAlerts": "사운드 알림",
+    "desktopNotifications": "데스크톱 알림",
+    "reset": "초기화",
+    "save": "설정 저장"
+  },
+  "period": { "days7": "7일", "days30": "30일" },
+  "languages": {
+    "en": "English", "pt-BR": "Português (Brasil)", "es": "Español", "fr": "Français", "de": "Deutsch",
+    "it": "Italiano", "ru": "Русский", "ja": "日本語", "zh-CN": "简体中文", "ko": "한국어"
+  }
+}

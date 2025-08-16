@@ -99,6 +99,12 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                 <option value="ru">{t('languages.ru')}</option>
                 <option value="ja">{t('languages.ja')}</option>
                 <option value="zh-CN">{t('languages.zh-CN')}</option>
+                <option value="ko">{t('languages.ko')}</option>
+                <option value="ar">{t('languages.ar')}</option>
+                <option value="he">{t('languages.he')}</option>
+                <option value="fa">{t('languages.fa')}</option>
+                <option value="hi">{t('languages.hi')}</option>
+                <option value="tr">{t('languages.tr')}</option>
               </select>
             </div>
           </div>
