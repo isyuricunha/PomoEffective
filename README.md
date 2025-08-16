@@ -1,11 +1,15 @@
-# 🍅 YuPomo - Cross-Platform Pomodoro Timer
+# 🍅 YuPomo – Boost productivity, one cycle at a time.
 
-A beautiful, feature-rich Pomodoro timer built with React, TypeScript, Vite, and Tauri. Available as both a web application and native desktop app for Windows, macOS, and Linux.
+A beautiful, minimalist Pomodoro timer built with React, TypeScript, Vite, and Tauri. Available as a web app and native desktop app for Windows, macOS, and Linux.
+
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/isyuricunha/YuPomo)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/isyuricunha/YuPomo)
+![License](https://img.shields.io/github/license/isyuricunha/YuPomo)
 
 ## ✨ Features
 
 - **🎯 Full Pomodoro Technique**: 25-min work sessions, 5-min short breaks, 15-min long breaks
-- **🌙 Dark/Light Mode**: Beautiful themes with yellow accents in dark mode
+- **🌙 Dark/Light Mode**: True black + amber in dark mode, clean and minimal in light
 - **⚙️ Customizable Settings**: Adjust timer durations, sound alerts, and notifications
 - **📊 Productivity Statistics**: Track your progress with interactive charts
 - **🔔 Smart Notifications**: Desktop and web notifications when sessions complete
@@ -16,22 +20,22 @@ A beautiful, feature-rich Pomodoro timer built with React, TypeScript, Vite, and
 ## 🚀 Quick Start
 
 ### Web Version
-Visit the hosted web app: [Coming Soon - Deploy Link]
+Visit the hosted web app: [Coming Soon]
 
 ### Desktop Installation
 
 #### Windows
-1. Download the `.exe` installer from [Releases](releases)
+1. Download the `.exe` installer from [Releases](https://github.com/isyuricunha/YuPomo/releases)
 2. Run the installer and follow the setup wizard
 3. Launch YuPomo from your Start Menu
 
 #### macOS
-1. Download the `.dmg` file from [Releases](releases)
+1. Download the `.dmg` file from [Releases](https://github.com/isyuricunha/YuPomo/releases)
 2. Open the DMG and drag YuPomo to Applications
 3. Launch from Applications folder
 
 #### Linux
-1. Download the `.AppImage` file from [Releases](releases)
+1. Download the `.AppImage` file from [Releases](https://github.com/isyuricunha/YuPomo/releases)
 2. Make it executable: `chmod +x YuPomo.AppImage`
 3. Run: `./YuPomo.AppImage`
 
@@ -45,8 +49,8 @@ Visit the hosted web app: [Coming Soon - Deploy Link]
 ### Setup
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/YuPomo.git
-cd YuPomo/YuPomo
+git clone https://github.com/isyuricunha/YuPomo.git
+cd YuPomo
 
 # Install dependencies
 npm install
@@ -80,7 +84,7 @@ npm run tauri build
 ## 📦 Tech Stack
 
 - **Frontend**: React 18 + TypeScript + Vite
-- **Styling**: TailwindCSS with custom themes
+- **Styling**: TailwindCSS with custom themes (true black dark theme)
 - **Charts**: Chart.js + react-chartjs-2
 - **Desktop**: Tauri (Rust backend)
 - **Storage**: localStorage (web) + Tauri filesystem (desktop)
@@ -128,7 +132,7 @@ Track your productivity with:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -139,9 +143,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- 🐛 [Report Issues](issues)
-- 💡 [Request Features](issues/new)
-- 📖 [Documentation](wiki)
+- 🐛 [Report Issues](https://github.com/isyuricunha/YuPomo/issues)
+- 💡 [Request Features](https://github.com/isyuricunha/YuPomo/issues/new)
+- 📖 [Documentation](https://github.com/isyuricunha/YuPomo/wiki)
 
 ---
 

@@ -46,7 +46,8 @@ export const sendNotification = async (options: NotificationOptions): Promise<vo
       if (await requestNotificationPermission()) {
         new Notification(options.title, {
           body: options.body,
-          icon: options.icon || '/vite.svg',
+          // Prefer provided icon; otherwise let the platform/browser default icon be used
+          icon: options.icon,
         })
       }
     }

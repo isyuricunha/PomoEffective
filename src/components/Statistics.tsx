@@ -187,7 +187,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
             theme === 'dark' ? 'bg-neutral-900 border border-neutral-800' : 'bg-gray-50'
           }`}>
             <div className="text-center">
-              <div className={`font-mono tabular-nums text-3xl md:text-4xl font-semibold ${
+              <div className={`font-mono tabular-nums text-4xl md:text-5xl font-semibold ${
                 theme === 'dark' ? 'text-amber-400' : 'text-blue-600'
               }`}>
                 {todaySessions}
@@ -204,7 +204,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
             theme === 'dark' ? 'bg-neutral-900 border border-neutral-800' : 'bg-gray-50'
           }`}>
             <div className="text-center">
-              <div className={`font-mono tabular-nums text-3xl md:text-4xl font-semibold ${
+              <div className={`font-mono tabular-nums text-4xl md:text-5xl font-semibold ${
                 theme === 'dark' ? 'text-amber-400' : 'text-blue-600'
               }`}>
                 {weeklyTotal}
@@ -221,7 +221,7 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
             theme === 'dark' ? 'bg-neutral-900 border border-neutral-800' : 'bg-gray-50'
           }`}>
             <div className="text-center">
-              <div className={`font-mono tabular-nums text-3xl md:text-4xl font-semibold ${
+              <div className={`font-mono tabular-nums text-4xl md:text-5xl font-semibold ${
                 theme === 'dark' ? 'text-amber-400' : 'text-blue-600'
               }`}>
                 {totalSessions}

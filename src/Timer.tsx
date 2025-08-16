@@ -75,9 +75,8 @@ const Timer = () => {
     const currentStateLabel = getStateInfo().label
     if (settings.notificationsEnabled) {
       await sendNotification({
-        title: 'Pomodoro Timer',
+        title: 'YuPomo',
         body: `${currentStateLabel} completed! ${timerState === 'work' ? 'Time for a break!' : 'Ready to focus?'}`,
-        icon: '/vite.svg'
       })
     }
     
@@ -130,33 +129,15 @@ const Timer = () => {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
   }
 
-  // Get display info for current state
+  // Get display info for current state (minimal)
   const getStateInfo = () => {
     switch (timerState) {
       case 'work':
-        return {
-          label: 'Focus Session',
-          emoji: '🍅',
-          bgColor: 'from-red-50 to-red-100',
-          buttonColor: 'bg-red-600 hover:bg-red-700',
-          textColor: 'text-red-600'
-        }
+        return { label: 'Focus Session' }
       case 'shortBreak':
-        return {
-          label: 'Short Break',
-          emoji: '☕',
-          bgColor: 'from-green-50 to-green-100',
-          buttonColor: 'bg-green-600 hover:bg-green-700',
-          textColor: 'text-green-600'
-        }
+        return { label: 'Short Break' }
       case 'longBreak':
-        return {
-          label: 'Long Break',
-          emoji: '🌟',
-          bgColor: 'from-blue-50 to-blue-100',
-          buttonColor: 'bg-blue-600 hover:bg-blue-700',
-          textColor: 'text-blue-600'
-        }
+        return { label: 'Long Break' }
     }
   }
 
