@@ -2,7 +2,7 @@
 name = "YuPomo"
 version = "0.1.15"
 description = "Boost productivity, one cycle at a time."
-authors = ["you"]
+authors = ["Yuri Cunha"]
 license = ""
 repository = ""
 default-run = "YuPomo"
