@@ -15,6 +15,7 @@ const HeaderBar = memo(function HeaderBar({ onOpenStats, onOpenSettings, toggleT
   toggleTheme: () => void
   theme: 'light' | 'dark'
 }) {
+  const { t } = useTranslation()
   return (
     <div className="flex items-center justify-center mb-6">
       <div className="flex items-center gap-2">
@@ -25,7 +26,7 @@ const HeaderBar = memo(function HeaderBar({ onOpenStats, onOpenSettings, toggleT
               ? 'border-neutral-800 bg-neutral-900 hover:bg-neutral-800 text-neutral-200'
               : 'border-neutral-200 bg-white hover:bg-neutral-100 text-neutral-700'
           }`}
-          aria-label="Statistics"
+          aria-label={t('aria.statistics')}
         >
           {/* Bar chart icon */}
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden>
@@ -41,7 +42,7 @@ const HeaderBar = memo(function HeaderBar({ onOpenStats, onOpenSettings, toggleT
               ? 'border-neutral-800 bg-neutral-900 hover:bg-neutral-800 text-neutral-200'
               : 'border-neutral-200 bg-white hover:bg-neutral-100 text-neutral-700'
           }`}
-          aria-label="Settings"
+          aria-label={t('aria.settings')}
         >
           {/* Gear icon */}
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden>
@@ -55,7 +56,7 @@ const HeaderBar = memo(function HeaderBar({ onOpenStats, onOpenSettings, toggleT
               ? 'border-neutral-800 bg-neutral-900 hover:bg-neutral-800 text-amber-400'
               : 'border-neutral-200 bg-white hover:bg-neutral-100 text-amber-500'
           }`}
-          aria-label="Toggle Theme"
+          aria-label={t('aria.toggleTheme')}
         >
           {/* Sun / Moon icon simplified */}
           {theme === 'dark' ? (
@@ -161,7 +162,7 @@ const Timer = () => {
               : 'bg-amber-50 border-amber-200 text-neutral-800'
           }`}>
             <div>
-              <strong>Update available:</strong> v{latest.latestVersion} · Current v{__APP_VERSION__}
+              <strong>{t('updates.bannerTitle')}</strong> {t('updates.bannerText', { latest: latest.latestVersion, current: typeof __APP_VERSION__ === 'string' ? __APP_VERSION__ : '0.0.0' })}
             </div>
             <a
               href={latest.htmlUrl}
@@ -169,7 +170,7 @@ const Timer = () => {
               rel="noopener noreferrer"
               className={`${theme === 'dark' ? 'text-amber-400 hover:underline' : 'text-neutral-800 hover:underline'}`}
             >
-              View release
+              {t('updates.viewRelease')}
             </a>
           </div>
         )}

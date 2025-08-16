@@ -293,7 +293,7 @@ Track your productivity with:
 
 ## 📄 License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the LGPL-2.1 license — see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 

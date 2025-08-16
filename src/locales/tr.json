@@ -41,6 +41,36 @@
     "reset": "Sıfırla",
     "save": "Ayarları Kaydet"
   },
+  "sound": {
+    "volume": "Ses seviyesi",
+    "quickPreview": "Hızlı önizleme",
+    "start": "Başlat",
+    "pause": "Duraklat",
+    "startBreak": "Molayı başlat",
+    "endBreak": "Molayı bitir"
+  },
+  "updates": {
+    "title": "Güncellemeler",
+    "manualPrompt": "Yeni bir sürümü manuel olarak kontrol et.",
+    "checking": "Kontrol ediliyor",
+    "checkNow": "Şimdi güncellemeleri kontrol et",
+    "openLatest": "En son sürüm v{{version}} aç",
+    "downloadAndInstall": "İndir ve yükle",
+    "autoUpdateLabel": "Başlangıçta otomatik güncelle (masaüstü)",
+    "statusUnavailable": "Güncellemeler kontrol edilemedi. Lütfen daha sonra tekrar deneyin.",
+    "statusAvailable": "Güncelleme mevcut: v{{latest}} (şu anki v{{current}})",
+    "statusUpToDate": "Güncelsiniz.",
+    "notifyTitle": "YuPomo güncellemesi mevcut",
+    "notifyBody": "v{{version}} mevcut. En son sürümü kontrol edin.",
+    "bannerTitle": "Güncelleme mevcut:",
+    "bannerText": "v{{latest}} · Şu anki v{{current}}",
+    "viewRelease": "Sürümü görüntüle"
+  },
+  "aria": {
+    "statistics": "İstatistikler",
+    "settings": "Ayarlar",
+    "toggleTheme": "Temayı değiştir"
+  },
   "period": { "days7": "7 Gün", "days30": "30 Gün" },
   "languages": {
     "en": "English", "pt-BR": "Português (Brasil)", "es": "Español", "fr": "Français", "de": "Deutsch",

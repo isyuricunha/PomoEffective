@@ -41,6 +41,36 @@
     "reset": "초기화",
     "save": "설정 저장"
   },
+  "sound": {
+    "volume": "볼륨",
+    "quickPreview": "빠른 미리보기",
+    "start": "시작",
+    "pause": "일시정지",
+    "startBreak": "휴식 시작",
+    "endBreak": "휴식 종료"
+  },
+  "updates": {
+    "title": "업데이트",
+    "manualPrompt": "새 버전을 수동으로 확인합니다.",
+    "checking": "확인 중",
+    "checkNow": "지금 업데이트 확인",
+    "openLatest": "최신 릴리스 v{{version}} 열기",
+    "downloadAndInstall": "다운로드 및 설치",
+    "autoUpdateLabel": "시작 시 자동 업데이트(데스크톱)",
+    "statusUnavailable": "업데이트를 확인할 수 없습니다. 나중에 다시 시도하세요.",
+    "statusAvailable": "업데이트 이용 가능: v{{latest}} (현재 v{{current}})",
+    "statusUpToDate": "최신 상태입니다.",
+    "notifyTitle": "YuPomo 업데이트 이용 가능",
+    "notifyBody": "v{{version}} 을(를) 사용할 수 있습니다. 최신 릴리스를 확인하세요.",
+    "bannerTitle": "업데이트 이용 가능:",
+    "bannerText": "v{{latest}} · 현재 v{{current}}",
+    "viewRelease": "릴리스 보기"
+  },
+  "aria": {
+    "statistics": "통계",
+    "settings": "설정",
+    "toggleTheme": "테마 전환"
+  },
   "period": { "days7": "7일", "days30": "30일" },
   "languages": {
     "en": "English", "pt-BR": "Português (Brasil)", "es": "Español", "fr": "Français", "de": "Deutsch",

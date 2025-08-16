@@ -63,19 +63,19 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
       setUpdateStatus('')
       const latest = await fetchLatestRelease('isyuricunha', 'YuPomo')
       if (!latest) {
-        setUpdateStatus('Could not check for updates. Please try again later.')
+        setUpdateStatus(t('updates.statusUnavailable'))
         return
       }
       const current = (typeof __APP_VERSION__ === 'string' ? __APP_VERSION__ : '0.0.0')
       const cmp = compareSemver(current, latest.latestVersion)
       if (cmp < 0) {
-        setUpdateStatus(`Update available: v${latest.latestVersion} (current v${current})`)
+        setUpdateStatus(t('updates.statusAvailable', { latest: latest.latestVersion, current }))
         void sendNotification({
-          title: 'YuPomo Update Available',
-          body: `v${latest.latestVersion} is available. Check the latest release.`,
+          title: t('updates.notifyTitle'),
+          body: t('updates.notifyBody', { version: latest.latestVersion }),
         })
       } else {
-        setUpdateStatus('You are up to date.')
+        setUpdateStatus(t('updates.statusUpToDate'))
       }
     } finally {
       setCheckingUpdate(false)
@@ -308,7 +308,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               {tempSettings.soundEnabled && (
                 <div className="space-y-3">
                   <div className="flex items-center justify-between gap-4">
-                    <label className={`${theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'} font-medium`}>🔈 Volume</label>
+                    <label className={`${theme === 'dark' ? 'text-neutral-300' : 'text-gray-600'} font-medium`}>🔈 {t('sound.volume')}</label>
                     <input
                       type="range"
                       min={0}
@@ -325,35 +325,35 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               {/* Quick preview of default sounds */}
               {tempSettings.soundEnabled && (
                 <div className="mt-3 space-y-2">
-                  <div className={`${theme === 'dark' ? 'text-neutral-400' : 'text-gray-600'} text-sm`}>Quick preview</div>
+                  <div className={`${theme === 'dark' ? 'text-neutral-400' : 'text-gray-600'} text-sm`}>{t('sound.quickPreview')}</div>
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       type="button"
                       onClick={() => playNotificationSound({ volume: typeof tempSettings.soundVolume === 'number' ? tempSettings.soundVolume : 0.3, sourceUrl: '/sounds/start.mp3' })}
                       className={`${theme === 'dark' ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800' : 'bg-gray-100 hover:bg-gray-200 text-gray-800'} px-3 py-2 rounded-lg text-sm text-left`}
                     >
-                      ▶️ Start
+                      ▶️ {t('sound.start')}
                     </button>
                     <button
                       type="button"
                       onClick={() => playNotificationSound({ volume: typeof tempSettings.soundVolume === 'number' ? tempSettings.soundVolume : 0.3, sourceUrl: '/sounds/pause.mp3' })}
                       className={`${theme === 'dark' ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800' : 'bg-gray-100 hover:bg-gray-200 text-gray-800'} px-3 py-2 rounded-lg text-sm text-left`}
                     >
-                      ⏸️ Pause
+                      ⏸️ {t('sound.pause')}
                     </button>
                     <button
                       type="button"
                       onClick={() => playNotificationSound({ volume: typeof tempSettings.soundVolume === 'number' ? tempSettings.soundVolume : 0.3, sourceUrl: '/sounds/break.mp3' })}
                       className={`${theme === 'dark' ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800' : 'bg-gray-100 hover:bg-gray-200 text-gray-800'} px-3 py-2 rounded-lg text-sm text-left`}
                     >
-                      🧘 Start Break
+                      🧘 {t('sound.startBreak')}
                     </button>
                     <button
                       type="button"
                       onClick={() => playNotificationSound({ volume: typeof tempSettings.soundVolume === 'number' ? tempSettings.soundVolume : 0.3, sourceUrl: '/sounds/end-break.mp3' })}
                       className={`${theme === 'dark' ? 'bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800' : 'bg-gray-100 hover:bg-gray-200 text-gray-800'} px-3 py-2 rounded-lg text-sm text-left`}
                     >
-                      ✅ End Break
+                      ✅ {t('sound.endBreak')}
                     </button>
                   </div>
                 </div>
@@ -417,12 +417,12 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
           <h3 className={`text-sm font-medium mb-4 ${
             theme === 'dark' ? 'text-neutral-300' : 'text-gray-700'
           }`}>
-            Updates
+            {t('updates.title')}
           </h3>
           <div className="space-y-3">
             <div className="flex items-center justify-between gap-3">
               <div className={`text-sm ${theme === 'dark' ? 'text-neutral-400' : 'text-gray-600'}`}>
-                {updateStatus || 'Manually check for a new version.'}
+                {updateStatus || t('updates.manualPrompt')}
               </div>
               <button
                 onClick={handleCheckUpdates}
@@ -433,7 +433,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                     : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
                 } ${checkingUpdate ? 'opacity-60 cursor-not-allowed' : ''}`}
               >
-                {checkingUpdate ? 'Checking' : 'Check for updates now'}
+                {checkingUpdate ? t('updates.checking') : t('updates.checkNow')}
               </button>
             </div>
 
@@ -446,7 +446,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                   rel="noopener noreferrer"
                   className={`${theme === 'dark' ? 'text-amber-400 hover:underline' : 'text-blue-600 hover:underline'} text-sm`}
                 >
-                  Open latest release v{latest.latestVersion}
+                  {t('updates.openLatest', { version: latest.latestVersion })}
                 </a>
                 <button
                   onClick={handleInstallUpdate}
@@ -456,7 +456,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
                       : 'bg-blue-600 hover:bg-blue-700 text-white'
                   }`}
                 >
-                  Download and install
+                  {t('updates.downloadAndInstall')}
                 </button>
               </div>
             )}
@@ -464,7 +464,7 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
             {/* Auto update toggle (Tauri only; harmless on web) */}
             <div className="flex items-center justify-between">
               <label className={`font-medium ${theme === 'dark' ? 'text-neutral-300' : 'text-gray-700'}`}>
-                ⚡ Auto update on startup (desktop)
+                ⚡ {t('updates.autoUpdateLabel')}
               </label>
               <button
                 onClick={() => setAutoUpdateEnabled(v => !v)}

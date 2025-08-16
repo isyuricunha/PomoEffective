@@ -47,6 +47,36 @@
     "reset": "Redefinir",
     "save": "Salvar Configurações"
   },
+  "sound": {
+    "volume": "Volume",
+    "quickPreview": "Prévia rápida",
+    "start": "Iniciar",
+    "pause": "Pausar",
+    "startBreak": "Iniciar pausa",
+    "endBreak": "Encerrar pausa"
+  },
+  "updates": {
+    "title": "Atualizações",
+    "manualPrompt": "Verificar manualmente se há uma nova versão.",
+    "checking": "Verificando",
+    "checkNow": "Procurar atualizações agora",
+    "openLatest": "Abrir o último lançamento v{{version}}",
+    "downloadAndInstall": "Baixar e instalar",
+    "autoUpdateLabel": "Atualização automática na inicialização (desktop)",
+    "statusUnavailable": "Não foi possível verificar atualizações. Tente novamente mais tarde.",
+    "statusAvailable": "Atualização disponível: v{{latest}} (atual v{{current}})",
+    "statusUpToDate": "Você está atualizado.",
+    "notifyTitle": "Atualização do YuPomo disponível",
+    "notifyBody": "v{{version}} está disponível. Confira o último lançamento.",
+    "bannerTitle": "Atualização disponível:",
+    "bannerText": "v{{latest}} · Atual v{{current}}",
+    "viewRelease": "Ver lançamento"
+  },
+  "aria": {
+    "statistics": "Estatísticas",
+    "settings": "Configurações",
+    "toggleTheme": "Alternar tema"
+  },
   "period": {
     "days7": "7 Dias",
     "days30": "30 Dias"

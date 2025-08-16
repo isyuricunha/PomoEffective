@@ -45,6 +45,36 @@
     "reset": "リセット",
     "save": "設定を保存"
   },
+  "sound": {
+    "volume": "音量",
+    "quickPreview": "クイックプレビュー",
+    "start": "開始",
+    "pause": "一時停止",
+    "startBreak": "休憩を開始",
+    "endBreak": "休憩を終了"
+  },
+  "updates": {
+    "title": "更新",
+    "manualPrompt": "新しいバージョンを手動で確認します。",
+    "checking": "確認中",
+    "checkNow": "今すぐアップデートを確認",
+    "openLatest": "最新リリース v{{version}} を開く",
+    "downloadAndInstall": "ダウンロードしてインストール",
+    "autoUpdateLabel": "起動時に自動更新（デスクトップ）",
+    "statusUnavailable": "アップデートを確認できませんでした。しばらくしてからもう一度お試しください。",
+    "statusAvailable": "利用可能なアップデート: v{{latest}}（現在 v{{current}}）",
+    "statusUpToDate": "最新の状態です。",
+    "notifyTitle": "YuPomo のアップデートがあります",
+    "notifyBody": "v{{version}} が利用可能です。最新のリリースを確認してください。",
+    "bannerTitle": "アップデートがあります:",
+    "bannerText": "v{{latest}} ・ 現在 v{{current}}",
+    "viewRelease": "リリースを見る"
+  },
+  "aria": {
+    "statistics": "統計",
+    "settings": "設定",
+    "toggleTheme": "テーマを切り替え"
+  },
   "period": { "days7": "7日", "days30": "30日" },
   "languages": {
     "en": "English",

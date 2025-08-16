@@ -41,6 +41,36 @@
     "reset": "रीसेट",
     "save": "सेटिंग्स सहेजें"
   },
+  "sound": {
+    "volume": "आवाज़",
+    "quickPreview": "त्वरित पूर्वावलोकन",
+    "start": "शुरू करें",
+    "pause": "रोकें",
+    "startBreak": "ब्रेक शुरू करें",
+    "endBreak": "ब्रेक समाप्त करें"
+  },
+  "updates": {
+    "title": "अपडेट्स",
+    "manualPrompt": "नए संस्करण के लिए मैन्युअल रूप से जाँच करें।",
+    "checking": "जाँच हो रही है",
+    "checkNow": "अभी अपडेट्स जाँचें",
+    "openLatest": "नवीनतम रिलीज़ v{{version}} खोलें",
+    "downloadAndInstall": "डाउनलोड और इंस्टॉल",
+    "autoUpdateLabel": "स्टार्टअप पर ऑटो अपडेट (डेस्कटॉप)",
+    "statusUnavailable": "अपडेट्स की जाँच नहीं हो सकी। कृपया बाद में पुनः प्रयास करें।",
+    "statusAvailable": "अपडेट उपलब्ध: v{{latest}} (वर्तमान v{{current}})",
+    "statusUpToDate": "आप नवीनतम संस्करण पर हैं।",
+    "notifyTitle": "YuPomo अपडेट उपलब्ध",
+    "notifyBody": "v{{version}} उपलब्ध है। नवीनतम रिलीज़ देखें।",
+    "bannerTitle": "अपडेट उपलब्ध:",
+    "bannerText": "v{{latest}} · वर्तमान v{{current}}",
+    "viewRelease": "रिलीज़ देखें"
+  },
+  "aria": {
+    "statistics": "आँकड़े",
+    "settings": "सेटिंग्स",
+    "toggleTheme": "थीम बदलें"
+  },
   "period": { "days7": "7 दिन", "days30": "30 दिन" },
   "languages": {
     "en": "English", "pt-BR": "Português (Brasil)", "es": "Español", "fr": "Français", "de": "Deutsch",

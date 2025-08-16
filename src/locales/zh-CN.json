@@ -45,6 +45,36 @@
     "reset": "重置",
     "save": "保存设置"
   },
+  "sound": {
+    "volume": "音量",
+    "quickPreview": "快速预览",
+    "start": "开始",
+    "pause": "暂停",
+    "startBreak": "开始休息",
+    "endBreak": "结束休息"
+  },
+  "updates": {
+    "title": "更新",
+    "manualPrompt": "手动检查是否有新版本。",
+    "checking": "正在检查",
+    "checkNow": "立即检查更新",
+    "openLatest": "打开最新发布 v{{version}}",
+    "downloadAndInstall": "下载并安装",
+    "autoUpdateLabel": "启动时自动更新（桌面）",
+    "statusUnavailable": "无法检查更新。请稍后再试。",
+    "statusAvailable": "有可用更新：v{{latest}}（当前 v{{current}}）",
+    "statusUpToDate": "已是最新版本。",
+    "notifyTitle": "YuPomo 有可用更新",
+    "notifyBody": "v{{version}} 可用。查看最新发布。",
+    "bannerTitle": "可用更新：",
+    "bannerText": "v{{latest}} · 当前 v{{current}}",
+    "viewRelease": "查看发布"
+  },
+  "aria": {
+    "statistics": "统计",
+    "settings": "设置",
+    "toggleTheme": "切换主题"
+  },
   "period": { "days7": "7天", "days30": "30天" },
   "languages": {
     "en": "English",

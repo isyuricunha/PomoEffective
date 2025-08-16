@@ -41,6 +41,36 @@
     "reset": "איפוס",
     "save": "שמירת הגדרות"
   },
+  "sound": {
+    "volume": "עוצמת קול",
+    "quickPreview": "תצוגה מהירה",
+    "start": "התחל",
+    "pause": "השהה",
+    "startBreak": "התחל הפסקה",
+    "endBreak": "סיים הפסקה"
+  },
+  "updates": {
+    "title": "עדכונים",
+    "manualPrompt": "בדיקה ידנית לגרסה חדשה.",
+    "checking": "בבדיקה",
+    "checkNow": "בדוק עדכונים כעת",
+    "openLatest": "פתח מהדורה אחרונה v{{version}}",
+    "downloadAndInstall": "הורדה והתקנה",
+    "autoUpdateLabel": "עדכון אוטומטי בהפעלה (דסקטופ)",
+    "statusUnavailable": "לא ניתן היה לבדוק עדכונים. נסו שוב מאוחר יותר.",
+    "statusAvailable": "עדכון זמין: v{{latest}} (נוכחית v{{current}})",
+    "statusUpToDate": "המערכת מעודכנת.",
+    "notifyTitle": "עדכון YuPomo זמין",
+    "notifyBody": "v{{version}} זמין. בדקו את המהדורה האחרונה.",
+    "bannerTitle": "עדכון זמין:",
+    "bannerText": "v{{latest}} · נוכחית v{{current}}",
+    "viewRelease": "הצגת מהדורה"
+  },
+  "aria": {
+    "statistics": "סטטיסטיקה",
+    "settings": "הגדרות",
+    "toggleTheme": "החלפת ערכת נושא"
+  },
   "period": { "days7": "7 ימים", "days30": "30 ימים" },
   "languages": {
     "en": "English", "pt-BR": "Português (Brasil)", "es": "Español", "fr": "Français", "de": "Deutsch",

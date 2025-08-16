@@ -41,6 +41,36 @@
     "reset": "بازنشانی",
     "save": "ذخیره تنظیمات"
   },
+  "sound": {
+    "volume": "حجم صدا",
+    "quickPreview": "پیش‌نمایش سریع",
+    "start": "شروع",
+    "pause": "مکث",
+    "startBreak": "شروع استراحت",
+    "endBreak": "پایان استراحت"
+  },
+  "updates": {
+    "title": "به‌روزرسانی‌ها",
+    "manualPrompt": "بررسی دستی برای نسخهٔ جدید.",
+    "checking": "در حال بررسی",
+    "checkNow": "اکنون به‌روزرسانی‌ها را بررسی کن",
+    "openLatest": "باز کردن آخرین انتشار v{{version}}",
+    "downloadAndInstall": "دانلود و نصب",
+    "autoUpdateLabel": "به‌روزرسانی خودکار هنگام راه‌اندازی (دسکتاپ)",
+    "statusUnavailable": "بررسی به‌روزرسانی‌ها ممکن نشد. لطفاً بعداً دوباره تلاش کنید.",
+    "statusAvailable": "به‌روزرسانی در دسترس است: v{{latest}} (نسخهٔ فعلی v{{current}})",
+    "statusUpToDate": "شما به‌روز هستید.",
+    "notifyTitle": "به‌روزرسانی YuPomo در دسترس است",
+    "notifyBody": "نسخهٔ v{{version}} در دسترس است. آخرین انتشار را بررسی کنید.",
+    "bannerTitle": "به‌روزرسانی در دسترس:",
+    "bannerText": "v{{latest}} · نسخهٔ فعلی v{{current}}",
+    "viewRelease": "مشاهدهٔ انتشار"
+  },
+  "aria": {
+    "statistics": "آمار",
+    "settings": "تنظیمات",
+    "toggleTheme": "تغییر تم"
+  },
   "period": { "days7": "۷ روز", "days30": "۳۰ روز" },
   "languages": {
     "en": "English", "pt-BR": "Português (Brasil)", "es": "Español", "fr": "Français", "de": "Deutsch",

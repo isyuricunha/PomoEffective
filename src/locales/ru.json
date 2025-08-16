@@ -45,6 +45,36 @@
     "reset": "Сброс",
     "save": "Сохранить Настройки"
   },
+  "sound": {
+    "volume": "Громкость",
+    "quickPreview": "Быстрая проверка",
+    "start": "Старт",
+    "pause": "Пауза",
+    "startBreak": "Начать перерыв",
+    "endBreak": "Завершить перерыв"
+  },
+  "updates": {
+    "title": "Обновления",
+    "manualPrompt": "Проверить наличие новой версии вручную.",
+    "checking": "Проверка",
+    "checkNow": "Проверить обновления сейчас",
+    "openLatest": "Открыть последний релиз v{{version}}",
+    "downloadAndInstall": "Скачать и установить",
+    "autoUpdateLabel": "Автообновление при запуске (настольное)",
+    "statusUnavailable": "Не удалось проверить обновления. Пожалуйста, попробуйте позже.",
+    "statusAvailable": "Доступно обновление: v{{latest}} (текущая v{{current}})",
+    "statusUpToDate": "У вас последняя версия.",
+    "notifyTitle": "Доступно обновление YuPomo",
+    "notifyBody": "Доступна v{{version}}. Посмотрите последний релиз.",
+    "bannerTitle": "Доступно обновление:",
+    "bannerText": "v{{latest}} · Текущая v{{current}}",
+    "viewRelease": "Посмотреть релиз"
+  },
+  "aria": {
+    "statistics": "Статистика",
+    "settings": "Настройки",
+    "toggleTheme": "Переключить тему"
+  },
   "period": { "days7": "7 Дней", "days30": "30 Дней" },
   "languages": {
     "en": "English",

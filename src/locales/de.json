@@ -45,6 +45,36 @@
     "reset": "Zurücksetzen",
     "save": "Einstellungen speichern"
   },
+  "sound": {
+    "volume": "Lautstärke",
+    "quickPreview": "Kurzhörprobe",
+    "start": "Start",
+    "pause": "Pause",
+    "startBreak": "Pause starten",
+    "endBreak": "Pause beenden"
+  },
+  "updates": {
+    "title": "Updates",
+    "manualPrompt": "Manuell nach einer neuen Version suchen.",
+    "checking": "Wird geprüft",
+    "checkNow": "Jetzt nach Updates suchen",
+    "openLatest": "Neueste Veröffentlichung v{{version}} öffnen",
+    "downloadAndInstall": "Herunterladen und installieren",
+    "autoUpdateLabel": "Automatische Aktualisierung beim Start (Desktop)",
+    "statusUnavailable": "Konnte nicht nach Updates suchen. Bitte später erneut versuchen.",
+    "statusAvailable": "Update verfügbar: v{{latest}} (aktuell v{{current}})",
+    "statusUpToDate": "Du bist auf dem neuesten Stand.",
+    "notifyTitle": "YuPomo‑Update verfügbar",
+    "notifyBody": "v{{version}} ist verfügbar. Prüfe die neueste Veröffentlichung.",
+    "bannerTitle": "Update verfügbar:",
+    "bannerText": "v{{latest}} · Aktuell v{{current}}",
+    "viewRelease": "Veröffentlichung anzeigen"
+  },
+  "aria": {
+    "statistics": "Statistiken",
+    "settings": "Einstellungen",
+    "toggleTheme": "Theme umschalten"
+  },
   "period": { "days7": "7 Tage", "days30": "30 Tage" },
   "languages": {
     "en": "English",

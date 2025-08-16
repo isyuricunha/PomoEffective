@@ -41,6 +41,36 @@
     "reset": "إعادة تعيين",
     "save": "حفظ الإعدادات"
   },
+  "sound": {
+    "volume": "مستوى الصوت",
+    "quickPreview": "معاينة سريعة",
+    "start": "ابدأ",
+    "pause": "إيقاف مؤقت",
+    "startBreak": "بدء الاستراحة",
+    "endBreak": "إنهاء الاستراحة"
+  },
+  "updates": {
+    "title": "التحديثات",
+    "manualPrompt": "تحقق يدويًا من وجود إصدار جديد.",
+    "checking": "جارٍ الفحص",
+    "checkNow": "تحقق من التحديثات الآن",
+    "openLatest": "افتح أحدث إصدار v{{version}}",
+    "downloadAndInstall": "تنزيل وتثبيت",
+    "autoUpdateLabel": "تحديث تلقائي عند بدء التشغيل (سطح المكتب)",
+    "statusUnavailable": "تعذر التحقق من وجود تحديثات. يرجى المحاولة لاحقًا.",
+    "statusAvailable": "يتوفر تحديث: v{{latest}} (الحالي v{{current}})",
+    "statusUpToDate": "أنت على آخر إصدار.",
+    "notifyTitle": "يتوفر تحديث YuPomo",
+    "notifyBody": "الإصدار v{{version}} متاح. تحقق من أحدث إصدار.",
+    "bannerTitle": "تحديث متوفر:",
+    "bannerText": "v{{latest}} · الحالي v{{current}}",
+    "viewRelease": "عرض الإصدار"
+  },
+  "aria": {
+    "statistics": "الإحصاءات",
+    "settings": "الإعدادات",
+    "toggleTheme": "تبديل السمة"
+  },
   "period": { "days7": "7 أيام", "days30": "30 يومًا" },
   "languages": {
     "en": "English", "pt-BR": "Português (Brasil)", "es": "Español", "fr": "Français", "de": "Deutsch",
