@@ -39,7 +39,6 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
   const { theme } = useTheme()
   const [viewPeriod, setViewPeriod] = useState<'week' | 'month'>('week')
 
-  if (!isOpen) return null
 
   const days = viewPeriod === 'week' ? 7 : 30
   const dailyStats = useMemo(() => getDailyStats(days), [getDailyStats, days])
@@ -158,6 +157,8 @@ const Statistics = ({ isOpen, onClose }: StatisticsProps) => {
       },
     },
   }
+
+  if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">

@@ -8,7 +8,7 @@ export interface NotificationOptions {
 
 // Check if running in Tauri
 const isTauri = () => {
-  return typeof window !== 'undefined' && (window as any).__TAURI__ !== undefined
+  return typeof window !== 'undefined' && '__TAURI__' in window
 }
 
 // Request notification permission for web
@@ -35,8 +35,8 @@ export const sendNotification = async (options: NotificationOptions): Promise<vo
   try {
     if (isTauri()) {
       // Use Tauri notification
-      const { sendNotification } = await import('@tauri-apps/api/notification')
-      await sendNotification({
+      const { sendNotification: tauriSendNotification } = await import('@tauri-apps/api/notification')
+      tauriSendNotification({
         title: options.title,
         body: options.body,
         icon: options.icon,
@@ -59,8 +59,17 @@ export const sendNotification = async (options: NotificationOptions): Promise<vo
 // Play notification sound
 export const playNotificationSound = (): void => {
   try {
-    // Create a simple beep sound using Web Audio API
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+    // Create a simple beep sound using Web Audio API with a typed fallback
+    const AudioCtor =
+      typeof window !== 'undefined' && 'AudioContext' in window
+        ? window.AudioContext
+        : (typeof window !== 'undefined' && 'webkitAudioContext' in window
+            ? (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+            : undefined)
+    if (!AudioCtor) {
+      return
+    }
+    const audioContext = new AudioCtor()
     
     // Create oscillator for beep sound
     const oscillator = audioContext.createOscillator()

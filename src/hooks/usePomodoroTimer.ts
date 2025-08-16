@@ -94,7 +94,9 @@ export const usePomodoroTimer = () => {
     const toSave: TimerPersistedState = state
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave))
-    } catch {}
+    } catch {
+      // ignore storage quota or privacy mode errors
+    }
   }, [state])
 
   useEffect(() => {
@@ -131,7 +133,7 @@ export const usePomodoroTimer = () => {
         if (remaining === 0) {
           clearInterval(tickRef.current!)
           tickRef.current = null
-          handleComplete()
+          void handleComplete()
         } else {
           dispatch({ type: 'SET_TIMELEFT', payload: remaining })
         }
@@ -150,7 +152,7 @@ export const usePomodoroTimer = () => {
   useEffect(() => {
     if (hasCompletedOnRestoreRef.current) {
       hasCompletedOnRestoreRef.current = false
-      handleComplete()
+      void handleComplete()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.state])
@@ -206,10 +208,14 @@ export const usePomodoroTimer = () => {
             next: state.state === 'work' ? t('timer.next_break') : t('timer.next_focus')
           })
         })
-      } catch {}
+      } catch {
+        // best-effort notification; ignore failures
+      }
     }
     if (settings.soundEnabled) {
-      try { playNotificationSound() } catch {}
+      try { playNotificationSound() } catch {
+        // best-effort sound; ignore failures
+      }
     }
 
     // transition

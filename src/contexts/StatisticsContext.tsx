@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react'
 
 export interface PomodoroSession {
   id: string
@@ -41,7 +41,7 @@ interface StatisticsProviderProps {
 
 // Check if running in Tauri
 const isTauri = () => {
-  return typeof window !== 'undefined' && (window as any).__TAURI__ !== undefined
+  return typeof window !== 'undefined' && '__TAURI__' in window
 }
 
 // Tauri filesystem operations
@@ -57,12 +57,26 @@ const getTauriFS = async () => {
 export const StatisticsProvider = ({ children }: StatisticsProviderProps) => {
   const [sessions, setSessions] = useState<PomodoroSession[]>([])
 
-  // Load sessions on mount
-  useEffect(() => {
-    loadSessions()
-  }, [])
+  const toSessionsArray = (input: unknown): PomodoroSession[] => {
+    if (!Array.isArray(input)) return []
+    return input
+      .map((item) => {
+        if (typeof item !== 'object' || item === null) return undefined
+        const o = item as Record<string, unknown>
+        const id = typeof o.id === 'string' ? o.id : undefined
+        const type = o.type === 'work' || o.type === 'shortBreak' || o.type === 'longBreak' ? o.type : undefined
+        const duration = typeof o.duration === 'number' ? o.duration : undefined
+        const completedAt = typeof o.completedAt === 'string' ? o.completedAt : undefined
+        const date = typeof o.date === 'string' ? o.date : undefined
+        if (id && type && typeof duration === 'number' && completedAt && date) {
+          return { id, type, duration, completedAt, date } as PomodoroSession
+        }
+        return undefined
+      })
+      .filter((x): x is PomodoroSession => Boolean(x))
+  }
 
-  const loadSessions = async () => {
+  const loadSessions = useCallback(async () => {
     try {
       if (isTauri()) {
         // Load from Tauri filesystem
@@ -72,8 +86,9 @@ export const StatisticsProvider = ({ children }: StatisticsProviderProps) => {
             const sessionsContent = await fs.readTextFile('pomodoro-history.json', {
               dir: fs.BaseDirectory.AppData
             })
-            const savedSessions = JSON.parse(sessionsContent)
-            setSessions(savedSessions || [])
+            const raw = JSON.parse(sessionsContent) as unknown
+            const parsed = toSessionsArray(raw)
+            setSessions(parsed)
           } catch {
             // File doesn't exist yet, start with empty array
             setSessions([])
@@ -83,15 +98,21 @@ export const StatisticsProvider = ({ children }: StatisticsProviderProps) => {
         // Load from localStorage
         const savedSessions = localStorage.getItem('pomodoro-history')
         if (savedSessions) {
-          const parsed = JSON.parse(savedSessions)
-          setSessions(parsed || [])
+          const raw = JSON.parse(savedSessions) as unknown
+          const parsed = toSessionsArray(raw)
+          setSessions(parsed)
         }
       }
     } catch (error) {
       console.warn('Failed to load session history:', error)
       setSessions([])
     }
-  }
+  }, [])
+
+  // Load sessions on mount
+  useEffect(() => {
+    void loadSessions()
+  }, [loadSessions])
 
   const saveSessions = async (newSessions: PomodoroSession[]) => {
     try {
@@ -124,7 +145,7 @@ export const StatisticsProvider = ({ children }: StatisticsProviderProps) => {
 
     const updatedSessions = [...sessions, newSession]
     setSessions(updatedSessions)
-    saveSessions(updatedSessions)
+    void saveSessions(updatedSessions)
   }
 
   const getDailyStats = (days: number): DailyStats[] => {

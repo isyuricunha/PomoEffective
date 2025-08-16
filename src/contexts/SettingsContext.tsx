@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useRef, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, useRef, ReactNode, useCallback } from 'react'
 
 export interface TimerSettings {
   work: number // in minutes
@@ -38,7 +38,7 @@ interface SettingsProviderProps {
 
 // Check if running in Tauri
 const isTauri = () => {
-  return typeof window !== 'undefined' && (window as any).__TAURI__ !== undefined
+  return typeof window !== 'undefined' && '__TAURI__' in window
 }
 
 // Tauri filesystem operations
@@ -51,16 +51,24 @@ const getTauriFS = async () => {
   }
 }
 
+// Safely narrow parsed settings object
+const toPartialTimerSettings = (input: unknown): Partial<TimerSettings> => {
+  if (typeof input !== 'object' || input === null) return {}
+  const obj = input as Record<string, unknown>
+  return {
+    work: typeof obj.work === 'number' ? obj.work : undefined,
+    shortBreak: typeof obj.shortBreak === 'number' ? obj.shortBreak : undefined,
+    longBreak: typeof obj.longBreak === 'number' ? obj.longBreak : undefined,
+    soundEnabled: typeof obj.soundEnabled === 'boolean' ? obj.soundEnabled : undefined,
+    notificationsEnabled: typeof obj.notificationsEnabled === 'boolean' ? obj.notificationsEnabled : undefined,
+  }
+}
+
 export const SettingsProvider = ({ children }: SettingsProviderProps) => {
   const [settings, setSettings] = useState<TimerSettings>(DEFAULT_SETTINGS)
   const saveTimerRef = useRef<number | null>(null)
 
-  // Load settings on mount
-  useEffect(() => {
-    loadSettings()
-  }, [])
-
-  const loadSettings = async () => {
+  const loadSettings = useCallback(async () => {
     try {
       if (isTauri()) {
         // Load from Tauri filesystem
@@ -70,8 +78,9 @@ export const SettingsProvider = ({ children }: SettingsProviderProps) => {
             const settingsContent = await fs.readTextFile('pomodoro-settings.json', {
               dir: fs.BaseDirectory.AppData
             })
-            const savedSettings = JSON.parse(settingsContent)
-            setSettings({ ...DEFAULT_SETTINGS, ...savedSettings })
+            const raw = JSON.parse(settingsContent) as unknown
+            const partial = toPartialTimerSettings(raw)
+            setSettings({ ...DEFAULT_SETTINGS, ...partial })
           } catch {
             // File doesn't exist yet, use defaults
           }
@@ -80,14 +89,20 @@ export const SettingsProvider = ({ children }: SettingsProviderProps) => {
         // Load from localStorage
         const savedSettings = localStorage.getItem('pomodoro-settings')
         if (savedSettings) {
-          const parsed = JSON.parse(savedSettings)
-          setSettings({ ...DEFAULT_SETTINGS, ...parsed })
+          const raw = JSON.parse(savedSettings) as unknown
+          const partial = toPartialTimerSettings(raw)
+          setSettings({ ...DEFAULT_SETTINGS, ...partial })
         }
       }
     } catch (error) {
       console.warn('Failed to load settings:', error)
     }
-  }
+  }, [])
+
+  // Load settings on mount
+  useEffect(() => {
+    void loadSettings()
+  }, [loadSettings])
 
   const saveSettings = async (newSettings: TimerSettings) => {
     try {
@@ -116,13 +131,13 @@ export const SettingsProvider = ({ children }: SettingsProviderProps) => {
       clearTimeout(saveTimerRef.current)
     }
     saveTimerRef.current = window.setTimeout(() => {
-      saveSettings(updatedSettings)
+      void saveSettings(updatedSettings)
     }, 300)
   }
 
   const resetSettings = () => {
     setSettings(DEFAULT_SETTINGS)
-    saveSettings(DEFAULT_SETTINGS)
+    void saveSettings(DEFAULT_SETTINGS)
   }
 
   return (

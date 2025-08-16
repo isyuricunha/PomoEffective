@@ -52,7 +52,7 @@ const MiniProgress = memo(function MiniProgress({ cycleCount, theme }: { cycleCo
   return (
     <div className="mt-8">
       <div className="flex justify-center gap-2">
-        {[...Array(4)].map((_, i) => (
+        {Array.from({ length: 4 }).map((_, i) => (
           <span
             key={i}
             className={`h-1.5 w-8 rounded-full ${

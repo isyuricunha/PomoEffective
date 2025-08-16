@@ -22,8 +22,10 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
     // persist language and switch
     try {
       localStorage.setItem('lang', lang)
-    } catch {}
-    i18n.changeLanguage(lang)
+    } catch {
+      // ignore storage quota or privacy mode errors
+    }
+    void i18n.changeLanguage(lang)
     onClose()
   }
 
