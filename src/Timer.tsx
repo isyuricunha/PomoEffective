@@ -163,11 +163,6 @@ const Timer = () => {
   const stateInfo = getStateInfo()
   const { theme, toggleTheme } = useTheme()
 
-  // Calculate progress percentage
-  const getProgress = () => {
-    const totalTime = timerConfig[timerState]
-    return ((totalTime - timeLeft) / totalTime) * 100
-  }
   
   // Update timer when settings change
   useEffect(() => {
