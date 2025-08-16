@@ -53,6 +53,10 @@ jobs:
             libayatana-appindicator3-dev \
             librsvg2-dev \
             libsoup2.4-dev \
+            libglib2.0-dev \
+            libpango1.0-dev \
+            libcairo2-dev \
+            libgdk-pixbuf-2.0-dev \
             patchelf \
             pkg-config \
             build-essential \
