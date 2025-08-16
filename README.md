@@ -246,6 +246,9 @@ How to change the language:
 ### Light Mode
 ![Light Mode Timer](screenshots/light-mode.png)
 
+### Light Mode (MVP)
+![Dark Mode Timer](screenshots/dark-mode.png)
+
 ### Dark Mode with Statistics
 ![Dark Mode Statistics](screenshots/dark-stats.png)
 
