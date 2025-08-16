@@ -1,0 +1,60 @@
+{
+  "app": { "title": "YuPomo" },
+  "labels": {
+    "focus": "集中セッション",
+    "shortBreak": "短い休憩",
+    "longBreak": "長い休憩"
+  },
+  "timer": {
+    "completed": "{{label}} が完了しました！ {{next}}",
+    "next_break": "休憩の時間です！",
+    "next_focus": "集中の準備はいいですか？",
+    "session": "セッション",
+    "today": "今日",
+    "start": "開始",
+    "pause": "一時停止",
+    "resume": "再開",
+    "cancel": "キャンセル",
+    "newCycle": "新しいサイクル"
+  },
+  "stats": {
+    "title": "生産性の統計",
+    "today": "今日のセッション",
+    "thisWeek": "今週",
+    "totalSessions": "合計セッション",
+    "sessionDistribution": "セッションの分布",
+    "last7": "直近7日間",
+    "last30": "直近30日間",
+    "dailyWorkSessions": "1日の作業セッション",
+    "dailyWorkTime": "1日の作業時間",
+    "insights": "インサイト",
+    "avgDailySessions": "1日あたりの平均セッション数:",
+    "totalFocusTime": "合計集中時間:"
+  },
+  "settings": {
+    "title": "設定",
+    "language": "言語",
+    "timerDurations": "タイマーの時間",
+    "workSession": "作業セッション",
+    "shortBreak": "短い休憩",
+    "longBreak": "長い休憩",
+    "minutes": "分",
+    "notificationsAndSound": "通知とサウンド",
+    "soundAlerts": "サウンドアラート",
+    "desktopNotifications": "デスクトップ通知",
+    "reset": "リセット",
+    "save": "設定を保存"
+  },
+  "period": { "days7": "7日", "days30": "30日" },
+  "languages": {
+    "en": "English",
+    "pt-BR": "Português (Brasil)",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "ru": "Русский",
+    "ja": "日本語",
+    "zh-CN": "简体中文"
+  }
+}

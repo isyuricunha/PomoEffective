@@ -1,0 +1,60 @@
+{
+  "app": { "title": "YuPomo" },
+  "labels": {
+    "focus": "Сессия Фокуса",
+    "shortBreak": "Короткий Перерыв",
+    "longBreak": "Длинный Перерыв"
+  },
+  "timer": {
+    "completed": "{{label}} завершена! {{next}}",
+    "next_break": "Время для перерыва!",
+    "next_focus": "Готовы сосредоточиться?",
+    "session": "Сессия",
+    "today": "сегодня",
+    "start": "Старт",
+    "pause": "Пауза",
+    "resume": "Продолжить",
+    "cancel": "Отмена",
+    "newCycle": "Новый Цикл"
+  },
+  "stats": {
+    "title": "Статистика Продуктивности",
+    "today": "Сегодняшние Сессии",
+    "thisWeek": "На Этой Неделе",
+    "totalSessions": "Всего Сессий",
+    "sessionDistribution": "Распределение Сессий",
+    "last7": "Последние 7 дней",
+    "last30": "Последние 30 дней",
+    "dailyWorkSessions": "Ежедневные Рабочие Сессии",
+    "dailyWorkTime": "Ежедневное Рабочее Время",
+    "insights": "Аналитика",
+    "avgDailySessions": "Среднее число сессий в день:",
+    "totalFocusTime": "Общее время фокуса:"
+  },
+  "settings": {
+    "title": "Настройки",
+    "language": "Язык",
+    "timerDurations": "Длительности Таймера",
+    "workSession": "Рабочая Сессия",
+    "shortBreak": "Короткий Перерыв",
+    "longBreak": "Длинный Перерыв",
+    "minutes": "мин",
+    "notificationsAndSound": "Уведомления и Звук",
+    "soundAlerts": "Звуковые Оповещения",
+    "desktopNotifications": "Уведомления Рабочего Стола",
+    "reset": "Сброс",
+    "save": "Сохранить Настройки"
+  },
+  "period": { "days7": "7 Дней", "days30": "30 Дней" },
+  "languages": {
+    "en": "English",
+    "pt-BR": "Português (Brasil)",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "ru": "Русский",
+    "ja": "日本語",
+    "zh-CN": "简体中文"
+  }
+}

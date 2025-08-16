@@ -53,6 +53,13 @@
   },
   "languages": {
     "en": "English",
-    "pt-BR": "Português (Brasil)"
+    "pt-BR": "Português (Brasil)",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "ru": "Русский",
+    "ja": "日本語",
+    "zh-CN": "简体中文"
   }
 }

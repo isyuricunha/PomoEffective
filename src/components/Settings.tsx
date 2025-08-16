@@ -92,6 +92,13 @@ const Settings = ({ isOpen, onClose }: SettingsProps) => {
               >
                 <option value="en">{t('languages.en')}</option>
                 <option value="pt-BR">{t('languages.pt-BR')}</option>
+                <option value="es">{t('languages.es')}</option>
+                <option value="fr">{t('languages.fr')}</option>
+                <option value="de">{t('languages.de')}</option>
+                <option value="it">{t('languages.it')}</option>
+                <option value="ru">{t('languages.ru')}</option>
+                <option value="ja">{t('languages.ja')}</option>
+                <option value="zh-CN">{t('languages.zh-CN')}</option>
               </select>
             </div>
           </div>

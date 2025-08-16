@@ -1,0 +1,60 @@
+{
+  "app": { "title": "YuPomo" },
+  "labels": {
+    "focus": "专注时段",
+    "shortBreak": "短休息",
+    "longBreak": "长休息"
+  },
+  "timer": {
+    "completed": "{{label}} 完成！ {{next}}",
+    "next_break": "该休息了！",
+    "next_focus": "准备好专注了吗？",
+    "session": "时段",
+    "today": "今天",
+    "start": "开始",
+    "pause": "暂停",
+    "resume": "继续",
+    "cancel": "取消",
+    "newCycle": "新循环"
+  },
+  "stats": {
+    "title": "效率统计",
+    "today": "今日时段",
+    "thisWeek": "本周",
+    "totalSessions": "总时段",
+    "sessionDistribution": "时段分布",
+    "last7": "过去7天",
+    "last30": "过去30天",
+    "dailyWorkSessions": "每日工作时段",
+    "dailyWorkTime": "每日工作时间",
+    "insights": "洞察",
+    "avgDailySessions": "日均时段：",
+    "totalFocusTime": "总专注时间："
+  },
+  "settings": {
+    "title": "设置",
+    "language": "语言",
+    "timerDurations": "计时器时长",
+    "workSession": "工作时段",
+    "shortBreak": "短休息",
+    "longBreak": "长休息",
+    "minutes": "分钟",
+    "notificationsAndSound": "通知与声音",
+    "soundAlerts": "声音提醒",
+    "desktopNotifications": "桌面通知",
+    "reset": "重置",
+    "save": "保存设置"
+  },
+  "period": { "days7": "7天", "days30": "30天" },
+  "languages": {
+    "en": "English",
+    "pt-BR": "Português (Brasil)",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "ru": "Русский",
+    "ja": "日本語",
+    "zh-CN": "简体中文"
+  }
+}

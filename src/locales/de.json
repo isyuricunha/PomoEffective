@@ -1,0 +1,60 @@
+{
+  "app": { "title": "YuPomo" },
+  "labels": {
+    "focus": "Fokussitzung",
+    "shortBreak": "Kurze Pause",
+    "longBreak": "Lange Pause"
+  },
+  "timer": {
+    "completed": "{{label}} abgeschlossen! {{next}}",
+    "next_break": "Zeit für eine Pause!",
+    "next_focus": "Bereit zum Fokussieren?",
+    "session": "Sitzung",
+    "today": "heute",
+    "start": "Start",
+    "pause": "Pause",
+    "resume": "Fortsetzen",
+    "cancel": "Abbrechen",
+    "newCycle": "Neuer Zyklus"
+  },
+  "stats": {
+    "title": "Produktivitätsstatistiken",
+    "today": "Heutige Sitzungen",
+    "thisWeek": "Diese Woche",
+    "totalSessions": "Gesamte Sitzungen",
+    "sessionDistribution": "Sitzungsverteilung",
+    "last7": "Letzte 7 Tage",
+    "last30": "Letzte 30 Tage",
+    "dailyWorkSessions": "Tägliche Arbeitssitzungen",
+    "dailyWorkTime": "Tägliche Arbeitszeit",
+    "insights": "Einblicke",
+    "avgDailySessions": "Durchschnittliche tägliche Sitzungen:",
+    "totalFocusTime": "Gesamte Fokuszeit:"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "timerDurations": "Timer-Dauern",
+    "workSession": "Arbeitssitzung",
+    "shortBreak": "Kurze Pause",
+    "longBreak": "Lange Pause",
+    "minutes": "Min",
+    "notificationsAndSound": "Benachrichtigungen & Ton",
+    "soundAlerts": "Tonalarme",
+    "desktopNotifications": "Desktop-Benachrichtigungen",
+    "reset": "Zurücksetzen",
+    "save": "Einstellungen speichern"
+  },
+  "period": { "days7": "7 Tage", "days30": "30 Tage" },
+  "languages": {
+    "en": "English",
+    "pt-BR": "Português (Brasil)",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "ru": "Русский",
+    "ja": "日本語",
+    "zh-CN": "简体中文"
+  }
+}
